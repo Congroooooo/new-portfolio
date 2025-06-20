@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Navbar.css';
 
 function DownloadIcon() {
@@ -9,8 +9,34 @@ function DownloadIcon() {
 }
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(window.scrollY);
+  const ticking = useRef(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      const currentY = window.scrollY;
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          setScrolled(currentY > 10);
+          if (currentY > lastScrollY.current && currentY > 60) {
+            setHidden(true);
+          } else if (currentY < lastScrollY.current) {
+            setHidden(false);
+          }
+          lastScrollY.current = currentY;
+          ticking.current = false;
+        });
+        ticking.current = true;
+      }
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar${scrolled ? ' navbar-bg' : ' navbar-transparent'}${hidden ? ' navbar-hidden' : ''}`}>
       <div className="logo">Nicko Balmes</div>
       <ul className="nav-links">
         {['Home', 'About', 'Services', 'Projects', 'Certificates'].map((item) => (

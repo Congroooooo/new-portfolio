@@ -1,0 +1,142 @@
+.certi-section {
+    background-color: #222;
+    padding: 80px 0;
+    text-align: center;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    overflow: hidden;
+  }
+  
+  .certi-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  
+  .certi-underline {
+    width: 100px;
+    height: 3px;
+    background: #fff;
+    margin: 0 auto 4rem auto;
+  }
+  
+  .certi-slider {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .certi-slider-wrapper {
+    display: flex;
+    align-items: center; /* Vertically center slides */
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  
+  .certi-slide {
+    width: 60%; /* Each slide is 60% of the container's width */
+    margin: 0 1.5%; /* A 3% gap between slides */
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start; /* Aligns items to the top */
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #1E1E1E;
+    border-radius: 15px;
+    flex-shrink: 0; /* Prevent slides from shrinking */
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.5s;
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+
+  .certi-slide.active {
+    transform: scale(1);
+    opacity: 1;
+    background-color: #333;
+  }
+  
+  .certi-image-container {
+    flex: 1;
+  }
+  
+  .certi-image {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .certi-content {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .certi-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  
+  .certi-description {
+    font-size: 1rem;
+    color: #fff;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(44, 44, 44, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  .slider-arrow.prev {
+    left: 20px;
+  }
+  
+  .slider-arrow.next {
+    right: 20px;
+  }
+
+  .slider-arrow:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+   
+  @media (max-width: 900px) {
+    .certi-slide {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .certi-content {
+      text-align: center;
+    }
+  
+    .certi-slide {
+        width: 80%;
+    }
+
+    .slider-arrow.prev {
+      left: 10px;
+    }
+      
+    .slider-arrow.next {
+    right: 10px;
+    }
+  } 

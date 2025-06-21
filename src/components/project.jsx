@@ -23,7 +23,7 @@ const GithubIcon = () => (
 const projectData = [
   {
     title: 'Nails By Kheley',
-    description: 'A portfolio website for a nail artist to showcase her work and book appointments.',
+    description: 'NailsByKheley is a website created to help our client strengthen her online presence. The platform showcases her nail products and services while offering an integrated appointment booking feature, making it easier for customers to connect and book services online.',
     tech: [
       { name: 'HTML', icon: techIcons.HTML },
       { name: 'CSS', icon: techIcons.CSS },
@@ -33,11 +33,11 @@ const projectData = [
     image: NailsByKheleyImg,
     demo: 'https://nailsbykheley.com',
     github: 'https://github.com/yourusername/nailsbykheley',
-    bgColor: '#f774df', 
+    bgColor: '#FF74AB', 
   },
   {
     title: 'PAMO',
-    description: 'A music event platform for planning and connecting with artists and fans.',
+    description: 'PAMO is a web-based inventory system developed as part of our thesis project for the school\'s Purchasing Asset and Management Officer. It streamlines stock management by tracking inventory movement—from delivery to selling items to students. The website also allows students to browse available products and place orders or pre-orders. Designed to be user-friendly and responsive, it works seamlessly across all devices.',
     tech: [
       { name: 'HTML', icon: techIcons.HTML },
       { name: 'CSS', icon: techIcons.CSS },

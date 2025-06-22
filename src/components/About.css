@@ -6,9 +6,8 @@
   box-sizing: border-box;
 }
 .about-header {
-  font-family: 'Playfair Display', serif;
-  font-size: 56px;
-  font-weight: bold;
+  font-size: 3.5rem;
+  font-weight: 400;
   text-align: center;
   margin-bottom: 8px;
   color: #2C2C2C;
@@ -44,17 +43,17 @@
 }
 .stat-top {
   color: #fff;
-  font-size: 36px;
-  font-weight: 700;
+  font-size: 2.25rem;
+  font-weight: 600;
   margin-bottom: 0;
   line-height: 1.1;
 }
 .stat-bold .stat-top {
-  font-weight: 900;
+  font-weight: 600;
 }
 .stat-bottom {
   color: #fff;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 400;
   font-family: 'Playfair Display', serif;
   line-height: 1.2;
@@ -96,26 +95,26 @@
   color: #fff;
 }
 .about-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  font-weight: 700;
+  font-size: 2.25rem;
+  font-weight: 400;
   color: #fff;
   margin-bottom: 32px;
 }
 .about-tagline {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
   color: #fff;
   margin-bottom: 32px;
   text-align: left;
+  font-weight: 300;
 }
 .about-btn {
   background: transparent;
   color: #fff;
   border: 1.5px solid #fff;
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
   border-radius: 12px;
   padding: 8px 20px;
   margin-top: 32px;
@@ -171,27 +170,118 @@
   }
 }
 
-.marquee-container {
+.spinning-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  padding: 4rem 2rem;
+  flex-wrap: wrap;
+}
+
+.spinning-text-static {
+  font-size: 3rem;
+  font-weight: 500;
+  color: #2C2C2C;
+  font-family: 'Poppins', sans-serif;
+}
+
+.spinning-text-box-wrapper {
+  position: relative;
+  width: 600px;
+  height: 100px;
+  perspective: 1000px;
+}
+
+.spinning-text-box {
+  position: absolute;
   width: 100%;
-  overflow: hidden;
-  color: #222;
-  padding: 10px 0 40px 0;
-  font-family: 'Playfair Display', serif;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1.2s linear;
+  transform-origin: center center;
 }
 
-.marquee {
-  display: inline-block;
-  white-space: nowrap;
-  animation: marquee 25s linear infinite;
-  font-size: 100px;
-  font-weight: 700;
+.spinning-text-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2C2C2C;
+  color: #fff;
+  font-size: 3.5rem;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  border: 2px solid #2C2C2C;
+  border-radius: 8px;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  text-align: center;
 }
 
-.marquee span {
-  margin-right: 10vw;
+.spinning-text-face.front {
+  transform: rotateX(0deg) translateZ(50px);
 }
 
-@keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.spinning-text-face.back {
+  transform: rotateX(180deg) translateZ(50px);
+}
+
+.spinning-text-face.top {
+  transform: rotateX(90deg) translateZ(50px);
+}
+
+.spinning-text-face.bottom {
+  transform: rotateX(-90deg) translateZ(50px);
+}
+
+.spinning-text-face.left {
+  transform: rotateY(-90deg) translateZ(50px);
+}
+
+.spinning-text-face.right {
+  transform: rotateY(90deg) translateZ(50px);
+}
+
+@media (max-width: 768px) {
+  .spinning-text-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .spinning-text-static {
+    font-size: 2.2rem;
+  }
+  .spinning-text-box-wrapper {
+    width: 100%;
+    max-width: 400px;
+    height: 80px;
+  }
+  .spinning-text-box {
+     transform-origin: center center;
+  }
+   .spinning-text-face {
+    font-size: 2.5rem;
+  }
+  .spinning-text-face.front {
+    transform: rotateX(0deg) translateZ(40px);
+  }
+  .spinning-text-face.back {
+    transform: rotateX(180deg) translateZ(40px);
+  }
+  .spinning-text-face.top {
+    transform: rotateX(90deg) translateZ(40px);
+  }
+  .spinning-text-face.bottom {
+    transform: rotateX(-90deg) translateZ(40px);
+  }
+  .spinning-text-face.left {
+    transform: rotateY(-90deg) translateZ(40px);
+  }
+  .spinning-text-face.right {
+    transform: rotateY(90deg) translateZ(40px);
+  }
 }

@@ -3,14 +3,12 @@
     padding: 80px 0;
     text-align: center;
     color: #fff;
-    font-family: 'Lato', sans-serif;
     overflow: hidden;
   }
   
   .certi-header {
-    font-family: 'Playfair Display', serif;
-    font-size: 56px;
-    font-weight: bold;
+    font-size: 3.5rem; /* 56px */
+    font-weight: 400;
     color: #fff;
     margin-bottom: 1rem;
   }
@@ -20,6 +18,10 @@
     height: 3px;
     background: #fff;
     margin: 0 auto 4rem auto;
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
   }
   
   .certi-slider {
@@ -74,9 +76,8 @@
   }
   
   .certi-title {
-    font-family: 'Playfair Display', serif;
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 400;
     color: #fff;
     margin-bottom: 1rem;
   }

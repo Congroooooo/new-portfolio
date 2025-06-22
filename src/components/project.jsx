@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './project.css';
 import NailsByKheleyImg from '../assets/NailsByKheley.png';
 import PAMOImg from '../assets/PAMO.png';
@@ -33,7 +33,7 @@ const projectData = [
     image: NailsByKheleyImg,
     demo: 'https://nailsbykheley.com',
     github: 'https://github.com/yourusername/nailsbykheley',
-    bgColor: '#FF74AB', 
+    year: 2024,
   },
   {
     title: 'PAMO',
@@ -47,7 +47,7 @@ const projectData = [
     image: PAMOImg,
     demo: 'https://pamo.com',
     github: 'https://github.com/yourusername/pamo',
-    bgColor: '#e6f261',
+    year: 2024,
   },
   {
     title: 'STI GWA Calculator',
@@ -59,62 +59,92 @@ const projectData = [
     image: GWAImg,
     demo: 'https://gwa.com',
     github: 'https://github.com/yourusername/pamo',
-    bgColor: '#5b8ef5',
+    year: 2025,
   },
 ];
 
-const Projects = () => {
-  const [hoveredBg, setHoveredBg] = useState(null);
+const TimelineItem = ({ project, idx }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const domRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        setIsVisible(entry.isIntersecting);
+      });
+    });
+
+    const { current } = domRef;
+    observer.observe(current);
+
+    return () => {
+        if(current) {
+            observer.unobserve(current);
+        }
+    };
+  }, []);
 
   return (
-    <section
-      className="projects-section"
-      style={{
-        background: hoveredBg || undefined,
-        transition: 'background 0.5s cubic-bezier(.4,2,.6,1)'
-      }}
+    <div
+      className={`timeline-item ${idx % 2 === 0 ? 'even' : 'odd'} ${isVisible ? 'is-visible' : ''}`}
+      ref={domRef}
     >
+      <div className="timeline-content">
+        <h3 className="project-title">{project.title}</h3>
+        <div className="project-tech-wrapper">
+          {project.tech.map((tech, i) => (
+            <img key={i} src={tech.icon} alt={tech.name} className="tech-icon" />
+          ))}
+        </div>
+        <p className="project-description">{project.description}</p>
+        <div className="project-buttons">
+            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="project-btn">
+                <EyeIcon /> Live Demo
+            </a>
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-btn">
+                <GithubIcon /> View Code
+            </a>
+        </div>
+      </div>
+      <div className="timeline-image-wrapper">
+        <img src={project.image} alt={project.title} className="project-image" />
+      </div>
+      <div className="timeline-marker">
+        <span className="timeline-year">{project.year}</span>
+      </div>
+    </div>
+  );
+};
+
+const Projects = () => {
+  const [isSectionVisible, setIsSectionVisible] = useState(false);
+  const sectionRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setIsSectionVisible(true);
+        observer.unobserve(entry.target);
+      }
+    });
+    const { current } = sectionRef;
+    observer.observe(current);
+    
+    return () => {
+        if(current) {
+            observer.unobserve(current);
+        }
+    };
+  }, []);
+
+  return (
+    <section className={`projects-section ${isSectionVisible ? 'is-visible' : ''}`} ref={sectionRef}>
       <h2 className="projects-header">Featured Projects</h2>
       <div className="projects-underline"></div>
-      <div className="projects-container">
+      <div className="projects-timeline">
         {projectData.map((project, idx) => (
-          <div
-            className="project-card underlay-card"
-            key={idx}
-            onMouseEnter={() => setHoveredBg(project.bgColor)}
-            onMouseLeave={() => setHoveredBg(null)}
-            tabIndex={0}
-            onFocus={() => setHoveredBg(project.bgColor)}
-            onBlur={() => setHoveredBg(null)}
-          >
-            <div className="project-image-wrapper">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="project-image"
-              />
-            </div>
-            <div className="project-underlay">
-              <h3 className="project-title underlay-title">{project.title}</h3>
-              <p className="project-desc underlay-desc">{project.description}</p>
-              <ul className="project-tech underlay-tech">
-                {project.tech.map((tech, i) => (
-                  <li key={i} className="tech-item">
-                    <img src={tech.icon} alt={tech.name + ' logo'} className="tech-icon" />
-                    <span className="tech-name">{tech.name}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="project-buttons underlay-buttons">
-                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="project-btn underlay-btn">
-                  <EyeIcon /> Demo
-                </a>
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-btn underlay-btn">
-                  <GithubIcon /> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
+          <TimelineItem project={project} idx={idx} key={idx} />
         ))}
       </div>
     </section>

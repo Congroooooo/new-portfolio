@@ -43,7 +43,7 @@ const Certi = () => {
     const calculateOffset = () => {
       const isMobile = window.innerWidth <= 900;
       const slideWidth = isMobile ? 80 : 60;
-      const slideMargin = 1.5 * 2; // Sum of left and right margins
+      const slideMargin = 1.5 * 2;
       const totalSlideWidth = slideWidth + slideMargin;
       const newOffset = (100 - totalSlideWidth) / 2 - (currentIndex * totalSlideWidth);
       setSliderOffset(newOffset);

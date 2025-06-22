@@ -1,6 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './About.css';
 import profileImg from '../assets/profile.png';
+
+const services = [
+  'Frontend Development', 
+  'UI/UX Design', 
+  'Web Design', 
+  'Mobile Design', 
+  'Responsiveness'
+];
+
+const SpinningText = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex(prev => prev + 1);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const numServices = services.length;
+  const angle = 360 / numServices;
+  const radius = (100 / 2) / Math.tan(Math.PI / numServices);
+
+  return (
+    <div className="spinning-text-box-wrapper">
+      <div
+        className="spinning-text-box"
+        style={{ transform: `rotateX(${-index * angle}deg)` }}
+      >
+        {services.map((service, i) => (
+          <span
+            key={i}
+            className="spinning-text-face"
+            style={{
+              transform: `rotateX(${i * angle}deg) translateZ(${radius}px)`,
+            }}
+          >
+            {service}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default function About() {
   return (
@@ -37,19 +81,9 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className="marquee-container">
-        <div className="marquee">
-          <span>• UI/UX Designer</span>
-          <span>• Frontend Developer</span>
-          <span>• Web Designer</span>
-          <span>• Mobile Designer</span>
-          <span>• Responsiveness</span>
-          <span>• UI/UX Designer</span>
-          <span>• Frontend Developer</span>
-          <span>• Web Designer</span>
-          <span>• Mobile Designer</span>
-          <span>• Responsiveness</span>
-        </div>
+      <div className="spinning-text-container">
+        <h3 className="spinning-text-static">What I can serve</h3>
+        <SpinningText />
       </div>
     </section>
   );

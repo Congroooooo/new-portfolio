@@ -1,0 +1,65 @@
+.conclusion-section {
+  background: #2C2C2C;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.conclusion-header {
+  font-size: 3rem; /* 48px */
+  font-weight: 400;
+  color: #6aaa81; /* A shade of green */
+  margin-bottom: 32px;
+}
+
+.conclusion-desc {
+  max-width: 800px;
+  font-size: 1.25rem; /* 20px */
+  color: #fff;
+  margin-bottom: 40px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.conclusion-btns {
+  display: flex;
+  gap: 24px;
+}
+
+.conclusion-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 2rem; /* 32px */
+  font-weight: 400;
+  border-radius: 16px;
+  padding: 12px 36px;
+  border: none;
+  background: #6aaa81; /* A shade of green */
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.conclusion-btn:hover {
+  background: #5a9a71; /* A darker green */
+}
+
+.conclusion-btn .btn-text {
+  position: relative;
+  top: -2px;
+}
+
+.conclusion-btn .btn-icon {
+  position: relative;
+  top: 2px;
+}
+
+.conclusion-btn .btn-svg path {
+    fill: #fff;
+} 

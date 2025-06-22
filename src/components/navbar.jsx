@@ -1,6 +1,6 @@
-// src/components/Navbar.jsx
+// src/components/navbar.jsx
 import React, { useEffect, useRef, useState } from 'react';
-import './Navbar.css';
+import './navbar.css';
 
 function DownloadIcon() {
   return (

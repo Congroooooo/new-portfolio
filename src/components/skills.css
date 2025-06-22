@@ -2,12 +2,10 @@
   background-color: #222;
   padding: 80px 5%;
   color: #fff;
-  font-family: 'Lato', sans-serif;
 }
 
 .skills-header {
-  font-family: 'Playfair Display', serif;
-  font-size: 56px;
+  font-size: 3.5rem; /* 56px */
   text-align: center;
   margin-bottom: 40px;
   color: #fff;
@@ -26,7 +24,8 @@
   border: 1.5px solid #444;
   padding: 10px 20px;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 1.125rem; /* 18px */
+  font-weight: 400;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -65,7 +64,7 @@
 .skill-card:hover {
   box-shadow: 0 8px 32px rgba(0,0,0,0.10);
   z-index: 2;
-  background: #e6e6e6;
+  background: rgba(255, 255, 255, 0.685);
   border-color:  #222;
 }
 
@@ -99,7 +98,7 @@
 }
 
 .skill-title {
-  font-size: 20px;
+  font-size: 1.25rem; /* 20px */
   font-weight: 600;
   color: #fff;
   letter-spacing: 0.5px;
@@ -108,8 +107,8 @@
 
 .skill-proficiency {
   color: #fff;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
   margin-top: 4px;
   margin-bottom: 2px;
   display: block;
@@ -125,8 +124,8 @@
 
 .skill-description {
   color: #fff;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
   margin-top: 4px;
   margin-bottom: 2px;
   display: block;

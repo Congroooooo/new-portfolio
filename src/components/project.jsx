@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './project.css';
 import NailsByKheleyImg from '../assets/NailsByKheley.png';
 import PAMOImg from '../assets/PAMO.png';
-import GWAImg from '../assets/GWA.png';
+import STIGWACalculatorImg from '../assets/STIGWACalculator.png';
 
 const techIcons = {
   React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
@@ -10,6 +10,7 @@ const techIcons = {
   HTML: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
   Javascript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
   PHP: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
+  Vite: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg',
 };
 
 const EyeIcon = () => (
@@ -51,14 +52,15 @@ const projectData = [
   },
   {
     title: 'STI GWA Calculator',
-    description: 'Lorem ipsum dolor sit amet. Aut unde perferendis ea unde rerum et molestiae voluptas ad veritatis laudantium',
+    description: 'The STI GWA Calculator is a web application that allows users to calculate their General Weighted Average (GWA) based on their grades and units. It provides a user-friendly interface for students to track their academic performance and plan their academic journey.',
     tech: [
       { name: 'React', icon: techIcons.React },
       { name: 'CSS', icon: techIcons.CSS },
+      { name: 'Vite', icon: techIcons.Vite },
     ],
-    image: GWAImg,
-    demo: 'https://gwa.com',
-    github: 'https://github.com/yourusername/pamo',
+    image: STIGWACalculatorImg,
+    demo: 'https://sti-gwa-calculator-rho.vercel.app/',
+    github: 'https://github.com/Congroooooo/gwa-calculator',
     year: 2025,
   },
 ];

@@ -31,8 +31,7 @@
 
 .logo {
   color: #fff;
-  font-family: 'Lato', sans-serif;
-  font-size: 24px;
+  font-size: 1.5rem; /* 24px */
   font-weight: 400;
   letter-spacing: 0.24em;
   user-select: none;
@@ -46,8 +45,7 @@
 }
 .nav-link {
   color: #fff;
-  font-family: 'Lato', sans-serif;
-  font-size: 20px;
+  font-size: 1.125rem; /* 20px */
   font-weight: 300;
   text-decoration: none;
   transition: color 0.2s;
@@ -58,9 +56,9 @@
 .download-btn {
   background: #FAF9F6;
   color: #2C2C2C;
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  font-weight: bold;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.25rem; /* 20px */
+  font-weight: 400;
   border-radius: 16px;
   padding: 8px 24px;
   display: flex;

@@ -62,16 +62,12 @@ export default function Hero() {
         Welcome, Im <span className="typewriter">{text}<span className="type-cursor">|</span></span>
       </h1>
       <p className="hero-desc">
-        A passionate 4th-year BSCS student with a strong focus on Frontend Development and UI/UX Design. I specialize in creating clean, user-friendly interfaces that deliver seamless digital experiences. I'm currently building my portfolio to showcase the skills and projects that reflect my journey as an aspiring frontend developer and designer.
+      I am a 4th Year Computer Science student and aspiring Frontend Developer and UI/UX Designer, passionate about creating a user-friendly, visually appealing, and functional web interfaces.
       </p>
       <div className="hero-btns">
         <button className="hero-btn">
           <span className="btn-text">Hire Me</span>
           <EmailIcon className="btn-icon" />
-        </button>
-        <button className="hero-btn more-btn">
-          <ArrowIcon className="btn-icon" />
-          <span className="btn-text">More About me</span>
         </button>
       </div>
     </section>

@@ -28,9 +28,9 @@
   50% { opacity: 0; }
 }
 .hero-desc {
-  max-width: 800px;
+  max-width: 700px;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: #fff;
   margin-bottom: 20px;
   font-weight: 300;
@@ -74,8 +74,7 @@
   background: rgba(255, 255, 255, 0.274);
   color: #fff;
 }
-.btn-text {
-}
+
 .btn-icon, .btn-svg {
   width: 28px;
   height: 28px;

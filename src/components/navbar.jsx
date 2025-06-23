@@ -39,7 +39,7 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' navbar-bg' : ' navbar-transparent'}${hidden ? ' navbar-hidden' : ''}`}>
       <div className="logo">Nicko Balmes</div>
       <ul className="nav-links">
-        {['Home', 'About', 'Services', 'Projects', 'Certificates'].map((item) => (
+        {['Home', 'About', 'Services', 'Projects'].map((item) => (
           <li key={item}>
             <a href={`#${item.toLowerCase()}`} className="nav-link">{item}</a>
           </li>

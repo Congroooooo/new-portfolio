@@ -13,7 +13,7 @@
 .conclusion-header {
   font-size: 3rem; /* 48px */
   font-weight: 400;
-  color: #6aaa81; /* A shade of green */
+  color: var(--accent-color); /* A shade of green */
   margin-bottom: 32px;
 }
 
@@ -40,19 +40,20 @@
   border-radius: 16px;
   padding: 12px 36px;
   border: none;
-  background: #6aaa81; /* A shade of green */
-  color: #fff;
+  background: var(--accent-color); /* A shade of green */
+  color: var(--text-primary);
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.2s;
 }
 
 .conclusion-btn:hover {
   background: #5a9a71; /* A darker green */
+  transform: translateY(-3px);
 }
 
 .conclusion-btn .btn-text {
   position: relative;
-  top: -2px;
+  top: 2px;
 }
 
 .conclusion-btn .btn-icon {
@@ -61,5 +62,5 @@
 }
 
 .conclusion-btn .btn-svg path {
-    fill: #fff;
+    fill: var(--text-primary);
 } 

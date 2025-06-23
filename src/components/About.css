@@ -1,5 +1,5 @@
 .about-section {
-  background: #E6E6E6;
+  background: #0a0a0a;
   padding: 48px 0 0 0;
   min-height: 100vh;
   width: 100%;
@@ -10,12 +10,12 @@
   font-weight: 400;
   text-align: center;
   margin-bottom: 8px;
-  color: #2C2C2C;
+  color: #ffffff;
 }
 .about-underline {
   width: 100px;
   height: 2px;
-  background: #2C2C2C;
+  background: #ffffff;
   margin: 0 auto 40px auto;
   position: relative;
   top: -8px;
@@ -74,7 +74,7 @@
   padding-left: 0;
   padding-right: 0;
   box-sizing: border-box;
-  background: #222;
+  background: #111111;
   border-radius: 0 0 120px 0 / 0 0 120px 0;
   padding: 64px 64px 64px 80px;
 }
@@ -274,7 +274,7 @@
 .spinning-text-static {
   font-size: 3rem;
   font-weight: 500;
-  color: #2C2C2C;
+  color: #ffffff;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -304,7 +304,7 @@
   background-color: #2C2C2C;
   color: #fff;
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 300;
   font-family: 'Poppins', sans-serif;
   border: 2px solid #2C2C2C;
   border-radius: 8px;

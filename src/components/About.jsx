@@ -3,10 +3,10 @@ import './About.css';
 import profileImg from '../assets/profile.png';
 
 const services = [
-  'Frontend Developer', 
-  'UI/UX Designer', 
-  'Web Designer', 
-  'Mobile Designer', 
+  'Frontend Development', 
+  'UI/UX Design', 
+  'Web Design', 
+  'Mobile Design', 
   'Responsiveness'
 ];
 

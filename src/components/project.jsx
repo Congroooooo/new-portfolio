@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './project.css';
 import NailsByKheleyImg from '../assets/NailsByKheley.png';
 import PAMOImg from '../assets/PAMO.png';
-import STIGWACalculatorImg from '../assets/STIGWACalculator.png';
+import STIGWACalculatorImg from '../assets/STI-GWA-CALCULATOR.png';
 
 const techIcons = {
   React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
@@ -10,7 +10,7 @@ const techIcons = {
   HTML: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
   Javascript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
   PHP: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
-  Vite: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg',
+  Vite: 'https://vitejs.dev/logo.svg',
 };
 
 const EyeIcon = () => (

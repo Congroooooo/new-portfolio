@@ -8,20 +8,20 @@ const techStack = [
   { name: 'TypeScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', proficiency: 'Intermediate', percentage: 50 },
   { name: 'ReactJS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', proficiency: 'Intermediate', percentage: 50 },
   { name: 'Tailwind', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg', proficiency: 'Intermediate', percentage: 50 },
+  { name: 'Vite', iconUrl: 'https://vitejs.dev/logo.svg', proficiency: 'Intermediate', percentage: 50 },
   { name: 'PHP', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg', proficiency: 'Advanced', percentage: 60 },
   { name: 'Python', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', proficiency: 'Beginner', percentage: 30 },
   { name: 'Java', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', proficiency: 'Beginner', percentage: 30 },
-  { name: 'C++', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg', proficiency: 'Beginner', percentage: 30 },
 ];
 
 const tools = [
   { name: 'Figma', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg', description: 'Design', percentage: 80 },
   { name: 'Git', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', description: 'Version Control', percentage: 60 },
   { name: 'GitHub', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', description: 'Project Management', percentage: 70 },
-  { name: 'MySQL', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', description: 'Database Management', percentage: 80 },
+  { name: 'MySQL', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', description: 'Database Management', percentage: 70 },
   { name: 'NPM', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg', description: 'Package Manager', percentage: 30 },
-  { name: 'Jira', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg', description: 'Project Tracking', percentage: 50 },
-  { name: 'Notion', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg', description: 'Project Management', percentage: 50 },
+  { name: 'Jira', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg', description: 'Project Tracking', percentage: 60 },
+  { name: 'Notion', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg', description: 'Project Management', percentage: 60 },
 ];
 
 const allSkills = [...techStack, ...tools];
@@ -58,7 +58,7 @@ function CircularMeter({ percentage, animate, showLabel }) {
         />
         <circle
           cx="25" cy="25" r={radius}
-          stroke="#222"
+          stroke="#ffffff"
           strokeWidth={stroke}
           fill="none"
           strokeDasharray={norm}
@@ -70,7 +70,7 @@ function CircularMeter({ percentage, animate, showLabel }) {
           <text
             x="50%" y="50%"
             textAnchor="middle" dominantBaseline="central"
-            fontSize="15" fontWeight="bold" fill="#222"
+            fontSize="15" fontWeight="bold" fill="rgba(255, 255, 255, 0.9)"
           >
             {progress}%
           </text>

@@ -1,5 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './skills.css';
+
+// Encrypt button constants
+const CYCLES_PER_LETTER = 2;
+const SHUFFLE_TIME = 50;
+const CHARS = "!@#$%^&*():{};|,.<>/?";
 
 const techStack = [
   { name: 'HTML', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', proficiency: 'Expert', percentage: 80 },
@@ -83,6 +88,46 @@ function CircularMeter({ percentage, animate, showLabel }) {
 export default function Skills() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [hovered, setHovered] = useState(null);
+  
+  // Encrypt button states
+  const intervalRefs = useRef({});
+  const [buttonTexts, setButtonTexts] = useState({
+    'All': 'All',
+    'Tech Stack': 'Tech Stack',
+    'Tools': 'Tools'
+  });
+
+  // Encrypt button functions
+  const scramble = (buttonKey, targetText) => {
+    let pos = 0;
+
+    intervalRefs.current[buttonKey] = setInterval(() => {
+      const scrambled = targetText.split("")
+        .map((char, index) => {
+          if (pos / CYCLES_PER_LETTER > index) {
+            return char;
+          }
+
+          const randomCharIndex = Math.floor(Math.random() * CHARS.length);
+          const randomChar = CHARS[randomCharIndex];
+
+          return randomChar;
+        })
+        .join("");
+
+      setButtonTexts(prev => ({ ...prev, [buttonKey]: scrambled }));
+      pos++;
+
+      if (pos >= targetText.length * CYCLES_PER_LETTER) {
+        stopScramble(buttonKey, targetText);
+      }
+    }, SHUFFLE_TIME);
+  };
+
+  const stopScramble = (buttonKey, targetText) => {
+    clearInterval(intervalRefs.current[buttonKey] || undefined);
+    setButtonTexts(prev => ({ ...prev, [buttonKey]: targetText }));
+  };
 
   const getSkills = () => {
     switch (activeFilter) {
@@ -105,20 +150,26 @@ export default function Skills() {
         <button
           className={`filter-btn ${activeFilter === 'All' ? 'active' : ''}`}
           onClick={() => setActiveFilter('All')}
+          onMouseEnter={() => scramble('All', 'All')}
+          onMouseLeave={() => stopScramble('All', 'All')}
         >
-          All
+          {buttonTexts.All}
         </button>
         <button
           className={`filter-btn ${activeFilter === 'Tech Stack' ? 'active' : ''}`}
           onClick={() => setActiveFilter('Tech Stack')}
+          onMouseEnter={() => scramble('Tech Stack', 'Tech Stack')}
+          onMouseLeave={() => stopScramble('Tech Stack', 'Tech Stack')}
         >
-          Tech Stack
+          {buttonTexts['Tech Stack']}
         </button>
         <button
           className={`filter-btn ${activeFilter === 'Tools' ? 'active' : ''}`}
           onClick={() => setActiveFilter('Tools')}
+          onMouseEnter={() => scramble('Tools', 'Tools')}
+          onMouseLeave={() => stopScramble('Tools', 'Tools')}
         >
-          Tools
+          {buttonTexts.Tools}
         </button>
       </div>
       <div className="skills-grid">

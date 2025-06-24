@@ -57,8 +57,8 @@
 }
 
 .conclusion-btn {
-  background: #ffffff;
-  color: #111111;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
   font-family: 'DM Serif Display', serif;
   font-size: 1.75rem;
   font-weight: 400;
@@ -68,7 +68,7 @@
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
   border: 2px solid #ffffff;
   position: relative;
@@ -95,11 +95,11 @@
 }
 
 .conclusion-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   color: #ffffff;
   border-color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(255, 255, 255, 0.4);
 }
 
 .btn-icon, .btn-svg {
@@ -109,7 +109,7 @@
 }
 
 .btn-svg path {
-  fill: #111111;
+  fill: #ffffff;
   transition: fill 0.3s ease;
 }
 
@@ -118,13 +118,15 @@
   transform: scale(1.1);
 }
 
-.conclusion-btn:hover .btn-svg path {
-  fill: #ffffff;
+/* Encrypt effect styling */
+.conclusion-btn .btn-text {
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  transition: all 0.1s ease;
 }
 
-.conclusion-btn .btn-text {
-  position: relative;
-  z-index: 2;
+.conclusion-btn:hover .btn-text {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
 .conclusion-btn .btn-icon {

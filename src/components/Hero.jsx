@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Hero.css';
 
 const roles = [
@@ -6,6 +6,12 @@ const roles = [
   'UI/UX Designer',
   'Frontend Developer',
 ];
+
+// Encrypt button constants
+const TARGET_TEXT = "Hire Me";
+const CYCLES_PER_LETTER = 2;
+const SHUFFLE_TIME = 50;
+const CHARS = "!@#$%^&*():{};|,.<>/?";
 
 function EmailIcon({ className = '' }) {
   return (
@@ -24,8 +30,45 @@ export default function Hero() {
   const [charIndex, setCharIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
   const [activeTrails, setActiveTrails] = useState([]);
+  
+  // Encrypt button state
+  const intervalRef = useRef(null);
+  const [buttonText, setButtonText] = useState(TARGET_TEXT);
+  
   const typingSpeed = 80;
   const pause = 1200;
+
+  // Encrypt button functions
+  const scramble = () => {
+    let pos = 0;
+
+    intervalRef.current = setInterval(() => {
+      const scrambled = TARGET_TEXT.split("")
+        .map((char, index) => {
+          if (pos / CYCLES_PER_LETTER > index) {
+            return char;
+          }
+
+          const randomCharIndex = Math.floor(Math.random() * CHARS.length);
+          const randomChar = CHARS[randomCharIndex];
+
+          return randomChar;
+        })
+        .join("");
+
+      setButtonText(scrambled);
+      pos++;
+
+      if (pos >= TARGET_TEXT.length * CYCLES_PER_LETTER) {
+        stopScramble();
+      }
+    }, SHUFFLE_TIME);
+  };
+
+  const stopScramble = () => {
+    clearInterval(intervalRef.current || undefined);
+    setButtonText(TARGET_TEXT);
+  };
 
   useEffect(() => {
     let timeout;
@@ -66,14 +109,13 @@ export default function Hero() {
 
       setActiveTrails(prev => [...prev, newTrail]);
 
-      // Remove trail after animation completes
       setTimeout(() => {
         setActiveTrails(prev => prev.filter(trail => trail.id !== newTrail.id));
       }, newTrail.duration * 1000);
     };
 
     const scheduleNextTrail = () => {
-      const randomDelay = 1000 + Math.random() * 4000; // 1-5 seconds between trails
+      const randomDelay = 1000 + Math.random() * 4000;
       setTimeout(() => {
         createRandomTrail();
         scheduleNextTrail();
@@ -117,8 +159,12 @@ export default function Hero() {
       I am a 4th Year Computer Science student and aspiring Frontend Developer and UI/UX Designer, passionate about creating a user-friendly, visually appealing, and functional web interfaces.
       </p>
       <div className="hero-btns">
-        <button className="hero-btn">
-          <span className="btn-text">Hire Me</span>
+        <button 
+          className="hero-btn"
+          onMouseEnter={scramble}
+          onMouseLeave={stopScramble}
+        >
+          <span className="btn-text">{buttonText}</span>
           <EmailIcon className="btn-icon" />
         </button>
         </div>

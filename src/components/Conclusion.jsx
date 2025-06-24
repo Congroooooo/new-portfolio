@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import './Conclusion.css';
+
+// Encrypt button constants
+const TARGET_TEXT = "Hire Me";
+const CYCLES_PER_LETTER = 2;
+const SHUFFLE_TIME = 50;
+const CHARS = "!@#$%^&*():{};|,.<>/?";
 
 function EmailIcon({ className = '' }) {
   return (
@@ -8,6 +14,42 @@ function EmailIcon({ className = '' }) {
 }
 
 export default function Conclusion() {
+  // Encrypt button state
+  const intervalRef = useRef(null);
+  const [buttonText, setButtonText] = useState(TARGET_TEXT);
+
+  // Encrypt button functions
+  const scramble = () => {
+    let pos = 0;
+
+    intervalRef.current = setInterval(() => {
+      const scrambled = TARGET_TEXT.split("")
+        .map((char, index) => {
+          if (pos / CYCLES_PER_LETTER > index) {
+            return char;
+          }
+
+          const randomCharIndex = Math.floor(Math.random() * CHARS.length);
+          const randomChar = CHARS[randomCharIndex];
+
+          return randomChar;
+        })
+        .join("");
+
+      setButtonText(scrambled);
+      pos++;
+
+      if (pos >= TARGET_TEXT.length * CYCLES_PER_LETTER) {
+        stopScramble();
+      }
+    }, SHUFFLE_TIME);
+  };
+
+  const stopScramble = () => {
+    clearInterval(intervalRef.current || undefined);
+    setButtonText(TARGET_TEXT);
+  };
+
   return (
     <section className="conclusion-section">
       <h2 className="conclusion-header">
@@ -17,8 +59,12 @@ export default function Conclusion() {
         Thank you for visiting my portfolio! I appreciate your time and look forward to connecting with like-minded individuals. I'm excited to connect and collaborate.
       </p>
       <div className="conclusion-btns">
-        <button className="conclusion-btn">
-          <span className="btn-text">Hire Me</span>
+        <button 
+          className="conclusion-btn"
+          onMouseEnter={scramble}
+          onMouseLeave={stopScramble}
+        >
+          <span className="btn-text">{buttonText}</span>
           <EmailIcon className="btn-icon" />
         </button>
       </div>

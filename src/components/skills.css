@@ -51,8 +51,8 @@
 }
 
 .filter-btn {
-  background: #ffffff;
-  color: #111111;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
   border: 2px solid #ffffff;
   padding: 10px 20px;
   border-radius: 12px;
@@ -62,7 +62,9 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
 }
 
 /* Tech-inspired button glow effect */
@@ -84,11 +86,12 @@
 
 .filter-btn.active,
 .filter-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   color: #ffffff;
   border-color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
 .filter-btn.active {

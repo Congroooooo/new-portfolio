@@ -85,9 +85,9 @@
 }
 
 .download-btn {
-  background: #ffffff;
-  color: #111111;
-  font-family: 'DM Serif Display', serif;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
   font-size: 1.25rem;
   font-weight: 400;
   border-radius: 16px;
@@ -95,11 +95,12 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
   border: 2px solid #ffffff;
   position: relative;
   overflow: hidden;
+  letter-spacing: 0.05em;
 }
 
 /* Tech-inspired button glow effect */
@@ -120,11 +121,12 @@
 }
 
 .download-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   color: #ffffff;
   border-color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
 .download-icon {
@@ -138,10 +140,6 @@
 }
 
 .download-btn svg path {
-  stroke: #111111;
-  transition: stroke 0.3s ease;
-}
-
-.download-btn:hover svg path {
   stroke: #ffffff;
+  transition: stroke 0.3s ease;
 } 

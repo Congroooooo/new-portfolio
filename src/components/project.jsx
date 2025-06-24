@@ -32,8 +32,21 @@ const projectData = [
       { name: 'PHP', icon: techIcons.PHP },
     ],
     image: NailsByKheleyImg,
-    demo: 'https://nailsbykheley.com',
+    demo: 'https://nailsbykheleydev.byethost11.com/public/pages/index.php?i=1',
     github: 'https://github.com/yourusername/nailsbykheley',
+    year: 2024,
+  },
+  {
+    title: 'STI GWA Calculator',
+    description: 'The STI GWA Calculator is a web application that allows users to calculate their General Weighted Average (GWA) based on their grades and units. It provides a user-friendly interface for students to track their academic performance and plan their academic journey.',
+    tech: [
+      { name: 'React', icon: techIcons.React },
+      { name: 'Vite', icon: techIcons.Vite },
+      { name: 'CSS', icon: techIcons.CSS },
+    ],
+    image: STIGWACalculatorImg,
+    demo: 'https://sti-gwa-calculator-rho.vercel.app/',
+    github: 'https://github.com/Congroooooo/gwa-calculator',
     year: 2024,
   },
   {
@@ -48,19 +61,6 @@ const projectData = [
     image: PAMOImg,
     demo: 'https://pamo.com',
     github: 'https://github.com/yourusername/pamo',
-    year: 2024,
-  },
-  {
-    title: 'STI GWA Calculator',
-    description: 'The STI GWA Calculator is a web application that allows users to calculate their General Weighted Average (GWA) based on their grades and units. It provides a user-friendly interface for students to track their academic performance and plan their academic journey.',
-    tech: [
-      { name: 'React', icon: techIcons.React },
-      { name: 'CSS', icon: techIcons.CSS },
-      { name: 'Vite', icon: techIcons.Vite },
-    ],
-    image: STIGWACalculatorImg,
-    demo: 'https://sti-gwa-calculator-rho.vercel.app/',
-    github: 'https://github.com/Congroooooo/gwa-calculator',
     year: 2025,
   },
 ];

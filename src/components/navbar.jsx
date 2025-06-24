@@ -1,6 +1,6 @@
 // src/components/navbar.jsx
 import React, { useEffect, useRef, useState } from 'react';
-import './navbar.css';
+import './Navbar.css';
 import resumePDF from '../assets/Balmes-Nicko-resume.pdf';
 
 const TARGET_TEXT = "Download CV";

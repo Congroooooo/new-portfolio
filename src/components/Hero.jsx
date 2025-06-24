@@ -132,7 +132,7 @@ export default function Hero() {
    }, []);
 
   return (
-    <section className="hero-section">
+    <section className="hero-section" id="home">
       {/* Animated background with grid and falling trails */}
       <div className="hero-background">
         <div className="grid-pattern"></div>
@@ -163,6 +163,8 @@ export default function Hero() {
           className="hero-btn"
           onMouseEnter={scramble}
           onMouseLeave={stopScramble}
+          onMouseDown={(e) => e.target.blur()}
+          onClick={() => window.open('mailto:nckoblms@gmail.com', '_blank')}
         >
           <span className="btn-text">{buttonText}</span>
           <EmailIcon className="btn-icon" />

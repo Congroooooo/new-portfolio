@@ -1,11 +1,10 @@
 .footer {
   background: #111111;
   color: #ccc;
-  padding: 60px 20px 40px 20px;
+  padding: 60px 20px 20px 20px;
   position: relative;
 }
 
-/* Add subtle grid background */
 .footer::before {
   content: '';
   position: absolute;
@@ -75,7 +74,7 @@
   padding: 12px 20px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(54, 32, 32, 0.1);
   position: relative;
   font-size: 1rem;
   font-weight: 400;

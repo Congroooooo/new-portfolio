@@ -65,88 +65,57 @@ const projectData = [
   },
 ];
 
-const TimelineItem = ({ project, idx }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const domRef = useRef();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        setIsVisible(entry.isIntersecting);
-      });
-    });
-
-    const { current } = domRef;
-    observer.observe(current);
-
-    return () => {
-        if(current) {
-            observer.unobserve(current);
-        }
-    };
-  }, []);
-
+const ProjectCard = ({ project, index }) => {
   return (
-    <div
-      className={`timeline-item ${idx % 2 === 0 ? 'even' : 'odd'} ${isVisible ? 'is-visible' : ''}`}
-      ref={domRef}
-    >
-      <div className="timeline-content">
-        <h3 className="project-title">{project.title}</h3>
-        <div className="project-tech-wrapper">
-          {project.tech.map((tech, i) => (
-            <img key={i} src={tech.icon} alt={tech.name} className="tech-icon" />
-          ))}
+    <div className={`project-card project-card-${index}`} style={{ zIndex: index + 1 }}>
+      <div 
+        className="project-card-inner" 
+        style={{ backgroundImage: `url(${project.image})` }}
+      >
+        <div className="project-content">
+          <h3 className="project-title">{project.title}</h3>
+          <div className="project-tech-wrapper">
+            {project.tech.map((tech, i) => (
+              <img key={i} src={tech.icon} alt={tech.name} className="tech-icon" title={tech.name} />
+            ))}
+          </div>
+          <p className="project-description">{project.description}</p>
         </div>
-        <p className="project-description">{project.description}</p>
         <div className="project-buttons">
-            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="project-btn">
-                <EyeIcon /> Live Demo
-            </a>
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-btn">
-                <GithubIcon /> View Code
-            </a>
+          <a 
+            href={project.demo} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="project-btn"
+            onMouseDown={(e) => e.target.blur()}
+          >
+            <EyeIcon /> Live Demo
+          </a>
+          <a 
+            href={project.github} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="project-btn"
+            onMouseDown={(e) => e.target.blur()}
+          >
+            <GithubIcon /> View Code
+          </a>
         </div>
-      </div>
-      <div className="timeline-image-wrapper">
-        <img src={project.image} alt={project.title} className="project-image" />
-      </div>
-      <div className="timeline-marker">
-        <span className="timeline-year">{project.year}</span>
       </div>
     </div>
   );
 };
 
 const Projects = () => {
-  const [isSectionVisible, setIsSectionVisible] = useState(false);
-  const sectionRef = useRef();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      const entry = entries[0];
-      if (entry.isIntersecting) {
-        setIsSectionVisible(true);
-        observer.unobserve(entry.target);
-      }
-    });
-    const { current } = sectionRef;
-    observer.observe(current);
-    
-    return () => {
-        if(current) {
-            observer.unobserve(current);
-        }
-    };
-  }, []);
-
   return (
-    <section className={`projects-section ${isSectionVisible ? 'is-visible' : ''}`} ref={sectionRef}>
-      <h2 className="projects-header">Featured Projects</h2>
-      <div className="projects-underline"></div>
-      <div className="projects-timeline">
-        {projectData.map((project, idx) => (
-          <TimelineItem project={project} idx={idx} key={idx} />
+    <section className="projects-section" id="projects">
+      <div className="projects-header-container">
+        <h2 className="projects-header">Projects</h2>
+        <div className="projects-underline"></div>
+      </div>
+      <div className="projects-container">
+        {projectData.map((project, index) => (
+          <ProjectCard key={index} project={project} index={index} />
         ))}
       </div>
     </section>
@@ -154,4 +123,5 @@ const Projects = () => {
 };
 
 export default Projects;
+
 

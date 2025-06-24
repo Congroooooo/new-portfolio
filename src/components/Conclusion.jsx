@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './Conclusion.css';
 
 // Encrypt button constants
@@ -17,6 +17,7 @@ export default function Conclusion() {
   // Encrypt button state
   const intervalRef = useRef(null);
   const [buttonText, setButtonText] = useState(TARGET_TEXT);
+  const [activeTrails, setActiveTrails] = useState([]);
 
   // Encrypt button functions
   const scramble = () => {
@@ -50,23 +51,85 @@ export default function Conclusion() {
     setButtonText(TARGET_TEXT);
   };
 
+  // Effect to create random falling trails
+  useEffect(() => {
+    const createRandomTrail = () => {
+      const gridSize = 50;
+      const viewportWidth = window.innerWidth;
+      const numberOfGridLines = Math.floor(viewportWidth / gridSize) + 1;
+      const randomGridLine = Math.floor(Math.random() * numberOfGridLines);
+      const gridLinePosition = randomGridLine * gridSize;
+      const leftPercentage = (gridLinePosition / viewportWidth) * 100;
+      
+      const newTrail = {
+        id: Date.now() + Math.random(),
+        left: leftPercentage,
+        duration: 3.5 // Fixed normal speed for all trails
+      };
+
+      setActiveTrails(prev => [...prev, newTrail]);
+
+      setTimeout(() => {
+        setActiveTrails(prev => prev.filter(trail => trail.id !== newTrail.id));
+      }, newTrail.duration * 1000);
+    };
+
+    const scheduleNextTrail = () => {
+      const randomDelay = 1000 + Math.random() * 4000;
+      setTimeout(() => {
+        createRandomTrail();
+        scheduleNextTrail();
+      }, randomDelay);
+    };
+
+    // Start the random trail generation
+    scheduleNextTrail();
+    
+    // Create initial trail immediately
+    createRandomTrail();
+
+    // Cleanup is handled by component unmount
+  }, []);
+
   return (
     <section className="conclusion-section">
-      <h2 className="conclusion-header">
-        Let's Connect !
-      </h2>
-      <p className="conclusion-desc">
-        Thank you for visiting my portfolio! I appreciate your time and look forward to connecting with like-minded individuals. I'm excited to connect and collaborate.
-      </p>
-      <div className="conclusion-btns">
-        <button 
-          className="conclusion-btn"
-          onMouseEnter={scramble}
-          onMouseLeave={stopScramble}
-        >
-          <span className="btn-text">{buttonText}</span>
-          <EmailIcon className="btn-icon" />
-        </button>
+      {/* Animated background with grid and falling trails */}
+      <div className="conclusion-background">
+        <div className="conclusion-grid-pattern"></div>
+        <div className="conclusion-falling-trails">
+          {activeTrails.map((trail) => (
+            <div
+              key={trail.id}
+              className="conclusion-light-trail"
+              style={{
+                left: `${trail.left}%`,
+                animationDuration: `${trail.duration}s`
+              }}
+            ></div>
+          ))}
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="conclusion-content">
+        <h2 className="conclusion-header">
+          Let's Connect !
+        </h2>
+        <p className="conclusion-desc">
+          Thank you for visiting my portfolio! I appreciate your time and look forward to connecting with like-minded individuals. I'm excited to connect and collaborate.
+        </p>
+        <div className="conclusion-btns">
+          <button
+            onClick={() => window.open('mailto:nckoblms@gmail.com', '_blank')}
+            className="conclusion-btn"
+            onMouseEnter={scramble}
+            onMouseLeave={stopScramble}
+            onMouseDown={(e) => e.target.blur()}
+          >
+            <span className="btn-text">{buttonText}</span>
+            <EmailIcon className="btn-icon" />
+          </button>
+        </div>
       </div>
     </section>
   );

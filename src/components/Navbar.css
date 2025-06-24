@@ -1,3 +1,9 @@
+/* Smooth scrolling for navigation */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Account for fixed navbar height */
+}
+
 .navbar {
   width: 100%;
   display: flex;
@@ -75,13 +81,32 @@
   transition: width 0.3s ease;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Focus styling for keyboard navigation */
+.nav-link:focus {
+  outline: none;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.nav-link:focus::after {
+  width: 100%;
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .download-btn {
@@ -142,4 +167,14 @@
 .download-btn svg path {
   stroke: #ffffff;
   transition: stroke 0.3s ease;
+}
+
+/* Remove focus outline after click while maintaining keyboard accessibility */
+.download-btn:focus {
+  outline: none;
+}
+
+.download-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
 } 

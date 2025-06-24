@@ -143,7 +143,7 @@ export default function Skills() {
   const isTechStack = (skill) => techStack.some(t => t.name === skill.name);
 
   return (
-    <section className="skills-section">
+    <section className="skills-section" id="skills">
       <h2 className="skills-header">Skills</h2>
       <div className="skills-underline"></div>
       <div className="skills-filter">

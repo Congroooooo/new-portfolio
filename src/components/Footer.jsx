@@ -32,15 +32,15 @@ export default function Footer() {
         <div className="social-section">
           <h3 className="footer-heading">Connect With Me</h3>
           <ul className="social-links">
-            <li><a href="https://www.facebook.com/nicko.balmes.1" target="_blank" rel="noopener noreferrer"><FacebookIcon />Facebook</a></li>
-            <li><a href="https://www.linkedin.com/in/nicko-balmes-39a896263/" target="_blank" rel="noopener noreferrer"><LinkedInIcon />LinkedIn</a></li>
-            <li><a href="https://instagram.com/nicko.balmes" target="_blank" rel="noopener noreferrer"><InstagramIcon />Instagram</a></li>
-            <li><a href="https://github.com/nckoblms" target="_blank" rel="noopener noreferrer"><GithubIcon />Github</a></li>
+            <li><a href="https://www.facebook.com/congrooo" target="_blank" rel="noopener noreferrer"><FacebookIcon />Facebook</a></li>
+            <li><a href="https://www.linkedin.com/in/nicko-balmes-088770343/" target="_blank" rel="noopener noreferrer"><LinkedInIcon />LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/congroooooooo/" target="_blank" rel="noopener noreferrer"><InstagramIcon />Instagram</a></li>
+            <li><a href="https://github.com/Congroooooo" target="_blank" rel="noopener noreferrer"><GithubIcon />Github</a></li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Nicko Balmes. All rights reserved.</p>
+        <p>&copy; 2025 Nicko Balmes. All rights reserved.</p>
       </div>
     </footer>
   );

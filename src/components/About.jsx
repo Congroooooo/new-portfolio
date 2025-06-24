@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './About.css';
 import profileImg from '../assets/profile.png';
 
+// Grid constants for water drop effect
+const GRID_WIDTH = 40;
+const GRID_HEIGHT = 30;
+
 const services = [
   'Frontend Development', 
   'UI/UX Design', 
@@ -46,13 +50,45 @@ const SpinningText = () => {
   );
 };
 
+const DotGrid = () => {
+  const dots = [];
+
+  for (let i = 0; i < GRID_WIDTH; i++) {
+    for (let j = 0; j < GRID_HEIGHT; j++) {
+      dots.push(
+        <div
+          className="about-dot-container"
+          key={`${i}-${j}`}
+        >
+          <div
+            className="about-dot-point"
+          />
+        </div>
+      );
+    }
+  }
+
+  return (
+    <div
+      className="about-dot-grid"
+      style={{ 
+        gridTemplateColumns: `repeat(${GRID_WIDTH}, 1fr)`,
+        gridTemplateRows: `repeat(${GRID_HEIGHT}, 1fr)`
+      }}
+    >
+      {dots}
+    </div>
+  );
+};
+
 export default function About() {
   const [cardVisible, setCardVisible] = useState(false);
   useEffect(() => {
     setTimeout(() => setCardVisible(true), 200);
   }, []);
   return (
-    <section className="about-section">
+    <section className="about-section" id="about">
+      <DotGrid />
       <h2 className="about-header">About Me</h2>
       <div className="about-underline"></div>
       <div className="about-stats">

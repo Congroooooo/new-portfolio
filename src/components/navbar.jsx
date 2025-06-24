@@ -1,8 +1,8 @@
 // src/components/navbar.jsx
 import React, { useEffect, useRef, useState } from 'react';
 import './navbar.css';
+import resumePDF from '../assets/Balmes-Nicko-resume.pdf';
 
-// Encrypt button constants
 const TARGET_TEXT = "Download CV";
 const CYCLES_PER_LETTER = 2;
 const SHUFFLE_TIME = 50;
@@ -17,6 +17,7 @@ function DownloadIcon() {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const lastScrollY = useRef(window.scrollY);
   const ticking = useRef(false);
   
@@ -67,6 +68,23 @@ export default function Navbar() {
           } else if (currentY < lastScrollY.current) {
             setHidden(false);
           }
+
+          // Detect active section
+          const sections = ['home', 'about', 'skills', 'projects', 'certificates'];
+          const windowHeight = window.innerHeight;
+          const scrollPosition = currentY + windowHeight / 2;
+
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const section = document.getElementById(sections[i]);
+            if (section) {
+              const sectionTop = section.offsetTop;
+              if (scrollPosition >= sectionTop) {
+                setActiveSection(sections[i]);
+                break;
+              }
+            }
+          }
+
           lastScrollY.current = currentY;
           ticking.current = false;
         });
@@ -81,17 +99,30 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' navbar-bg' : ' navbar-transparent'}${hidden ? ' navbar-hidden' : ''}`}>
       <div className="logo">Nicko Balmes</div>
       <ul className="nav-links">
-        {['Home', 'About', 'Services', 'Projects'].map((item) => (
-          <li key={item}>
-            <a href={`#${item.toLowerCase()}`} className="nav-link">{item}</a>
+        {[
+          { name: 'Home', id: 'home' },
+          { name: 'About', id: 'about' },
+          { name: 'Skills', id: 'skills' },
+          { name: 'Projects', id: 'projects' },
+          { name: 'Certificates', id: 'certificates' }
+        ].map((item) => (
+          <li key={item.name}>
+            <a 
+              href={`#${item.id}`} 
+              className={`nav-link${activeSection === item.id ? ' active' : ''}`}
+            >
+              {item.name}
+            </a>
           </li>
         ))}
       </ul>
       <a 
-        href="#" 
+        href={resumePDF}
+        download="Balmes-Nicko-resume.pdf"
         className="download-btn"
         onMouseEnter={scramble}
         onMouseLeave={stopScramble}
+        onMouseDown={(e) => e.target.blur()}
       >
         {buttonText} <span className="download-icon"><DownloadIcon /></span>
       </a>

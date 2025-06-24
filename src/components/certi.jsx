@@ -11,27 +11,27 @@ const certificateData = [
   {
     image: NailsByKheleyCerti,
     title: 'NailsByKheley',
-    description: 'Aut commodi neque aut quas neque ea autem aspernatur quo nisi internos in officiis nihil? Ea quas possimus aut corporis iusto ut iusto consequatur ut animi enim sit dolor corrupti. Eos quia tenetur aut quas ipsam et aliquam dolores.',
+    description: 'Awarded in recognition of our group’s excellence in database management, this certificate highlights our collective ability to design, implement, and optimize databases. It reflects our proficiency in structured query language (SQL) and data management principles to ensure efficient and effective information handling.',
   },
   {
     image: FreeCodeCampCerti,
-    title: 'FreeCodeCamp',
-    description: 'Responsive Web Design certification from freeCodeCamp.',
+    title: 'Responsive Web Design',
+    description: 'This certification acknowledges my ability to create responsive and mobile-friendly web interfaces. It covers modern CSS techniques, Flexbox, Grid, and accessibility best practices, ensuring seamless user experiences across different devices.',
   },
   {
     image: SololearnWeb,
-    title: 'SoloLearn',
-    description: 'Web Development certificate from SoloLearn.',
+    title: 'Web Development',
+    description: 'This certificate validates my foundational knowledge of web development, covering essential concepts in HTML, CSS, and JavaScript. It represents my starting point in building functional and visually appealing websites.',
   },
   {
     image: SololearnIntroJS,
-    title: 'SoloLearn',
-    description: 'Introduction to JavaScript certificate from SoloLearn.',
+    title: 'Introduction to JavaScript',
+    description: 'This certificate demonstrates my understanding of JavaScript fundamentals, including variables, functions, loops, and event handling. It solidifies my skills in writing dynamic and interactive web applications.',
   },
   {
     image: SololearnInterJS,
-    title: 'SoloLearn',
-    description: 'Intermediate JavaScript certificate from SoloLearn.',
+    title: 'Intermediate JavaScript',
+    description: 'This certificate validates my intermediate knowledge of JavaScript, including advanced concepts like closures, prototypes, and asynchronous programming. It demonstrates my ability to build more complex and efficient web applications.',
   },
 ];
 
@@ -67,7 +67,7 @@ const Certi = () => {
   };
 
   return (
-    <section className="certi-section">
+    <section className="certi-section" id="certificates">
       <h2 className="certi-header">CERTIFICATES</h2>
       <div className="certi-underline"></div>
       <div className="certi-slider">

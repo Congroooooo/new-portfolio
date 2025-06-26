@@ -55,6 +55,9 @@ const DotGrid = () => {
 
   for (let i = 0; i < GRID_WIDTH; i++) {
     for (let j = 0; j < GRID_HEIGHT; j++) {
+      // Random animation delay between 0 and 4 seconds for staggered effect
+      const randomDelay = Math.random() * 4;
+      
       dots.push(
         <div
           className="about-dot-container"
@@ -62,6 +65,9 @@ const DotGrid = () => {
         >
           <div
             className="about-dot-point"
+            style={{
+              animationDelay: `${randomDelay}s`
+            }}
           />
         </div>
       );

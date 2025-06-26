@@ -51,7 +51,7 @@ const projectData = [
   },
   {
     title: 'PAMO',
-    description: 'PAMO is a web-based inventory system developed as part of our thesis project for the school\'s Purchasing Asset and Management Officer. It streamlines stock management by tracking inventory movement—from delivery to selling items to students. The website also allows students to browse available products and place orders or pre-orders. Designed to be user-friendly and responsive, it works seamlessly across all devices.',
+    description: 'PAMO is a responsive web-based inventory system developed for our school\'s Purchasing Asset and Management Officer. It tracks stock movement from delivery to sales and allows students to browse and place orders or pre-orders with ease.',
     tech: [
       { name: 'HTML', icon: techIcons.HTML },
       { name: 'CSS', icon: techIcons.CSS },

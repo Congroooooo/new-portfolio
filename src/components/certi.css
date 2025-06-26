@@ -7,7 +7,6 @@
     position: relative;
   }
   
-  /* Add subtle grid background */
   .certi-section::before {
     content: '';
     position: absolute;
@@ -196,4 +195,10 @@
     .slider-arrow.next {
     right: 10px;
     }
-  } 
+  }
+
+  @media (max-width: 480px) {
+    .certi-header {
+      font-size: 2.5rem;
+    }
+  }

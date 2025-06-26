@@ -1,7 +1,7 @@
 // src/components/navbar.jsx
 import React, { useEffect, useRef, useState } from 'react';
 import './Navbar.css';
-import resumePDF from '../assets/Balmes-Nicko-resume.pdf';
+import resumePDF from '../assets/BalmesResume.pdf';
 
 const TARGET_TEXT = "Download CV";
 const CYCLES_PER_LETTER = 2;
@@ -118,7 +118,7 @@ export default function Navbar() {
       </ul>
       <a 
         href={resumePDF}
-        download="Balmes-Nicko-resume.pdf"
+        download="BalmesResume.pdf"
         className="download-btn"
         onMouseEnter={scramble}
         onMouseLeave={stopScramble}

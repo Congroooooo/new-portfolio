@@ -236,3 +236,263 @@
   outline: 2px solid rgba(255, 255, 255, 0.8);
   outline-offset: 2px;
 }
+
+/* Responsive Design */
+
+/* Extra Large (XL) - 1201px+ Desktops */
+@media (min-width: 1201px) {
+  .hero-section {
+    padding: 0 80px;
+  }
+  
+  .hero-header {
+    font-size: 3.5rem;
+    margin-bottom: 40px;
+  }
+  
+  .hero-desc {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin-bottom: 24px;
+  }
+  
+  .hero-btn {
+    font-size: 1.9rem;
+    padding: 18px 45px;
+    border-radius: 24px;
+  }
+  
+  .btn-icon, .btn-svg {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .grid-pattern {
+    background-size: 60px 60px;
+  }
+}
+
+/* Large (LG) - 1025px-1200px Laptops */
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .hero-section {
+    padding: 0 60px;
+  }
+  
+  .hero-header {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+  }
+  
+  .hero-desc {
+    font-size: 1.15rem;
+    max-width: 650px;
+    margin-bottom: 18px;
+  }
+  
+  .hero-btn {
+    font-size: 1.6rem;
+    padding: 14px 36px;
+    border-radius: 18px;
+  }
+  
+  .btn-icon, .btn-svg {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .grid-pattern {
+    background-size: 45px 45px;
+  }
+}
+
+/* Medium (MD) - 769px-1024px Tablets */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .hero-section {
+    padding: 0 40px;
+  }
+  
+  .hero-header {
+    font-size: 2.4rem;
+    margin-bottom: 28px;
+  }
+  
+  .hero-desc {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-bottom: 16px;
+  }
+  
+  .hero-btn {
+    font-size: 1.5rem;
+    padding: 12px 32px;
+    border-radius: 16px;
+  }
+  
+  .btn-icon, .btn-svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .hero-btns {
+    margin-top: 28px;
+  }
+  
+  .grid-pattern {
+    background-size: 40px 40px;
+  }
+}
+
+/* Small (SM) - 481px-768px Phones */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 0 20px;
+    height: calc(100vh - 80px); /* Account for mobile navbar height */
+  }
+  
+  .hero-header {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+  
+  .hero-desc {
+    font-size: 1rem;
+    max-width: 90%;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  
+  .hero-btn {
+    font-size: 1.3rem;
+    padding: 12px 28px;
+    border-radius: 14px;
+    gap: 10px;
+  }
+  
+  .btn-icon, .btn-svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .hero-btns {
+    margin-top: 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
+  
+  .hero-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+  
+  .grid-pattern {
+    background-size: 30px 30px;
+  }
+  
+  .light-trail {
+    height: 60px;
+  }
+}
+
+/* Extra Small (XS) - ≤480px Small phones */
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 0 16px;
+    height: calc(100vh - 70px); /* Account for smaller mobile navbar */
+  }
+  
+  .hero-header {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+  
+  .hero-desc {
+    font-size: 0.9rem;
+    max-width: 95%;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  
+  .hero-btn {
+    font-size: 1.1rem;
+    padding: 10px 24px;
+    border-radius: 12px;
+    gap: 8px;
+  }
+  
+  .btn-icon, .btn-svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .hero-btns {
+    margin-top: 20px;
+    gap: 12px;
+  }
+  
+  .hero-btn {
+    width: 100%;
+    max-width: 240px;
+  }
+  
+  .grid-pattern {
+    background-size: 25px 25px;
+    opacity: 0.4;
+  }
+  
+  .light-trail {
+    height: 50px;
+    width: 0.8px;
+  }
+  
+  /* Reduce animation intensity on very small screens */
+  .falling-trails {
+    opacity: 0.7;
+  }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-section {
+    height: 100vh;
+    padding: 0 20px;
+  }
+  
+  .hero-header {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+  }
+  
+  .hero-desc {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero-btns {
+    margin-top: 16px;
+    flex-direction: row;
+    gap: 16px;
+  }
+  
+  .hero-btn {
+    width: auto;
+    min-width: 180px;
+  }
+}
+
+/* High DPI/Retina display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .grid-pattern {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  }
+  
+  .light-trail {
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  }
+}

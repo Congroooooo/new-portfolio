@@ -380,6 +380,14 @@
     padding: 12px 24px;
     font-size: 0.9rem;
   }
+
+  .project-card-inner:hover .project-buttons {
+    opacity: 1;
+    transform: translateY(0);
+    display: flex
+;
+    flex-direction: row;
+}
 }
 
 @media screen and (max-width: 480px) {
@@ -416,4 +424,11 @@
     width: 35px;
     height: 35px;
   }
+
+  .project-card-inner:hover .project-buttons {
+    opacity: 1;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+}
 }

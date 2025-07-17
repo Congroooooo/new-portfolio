@@ -23,7 +23,7 @@
 }
 
 .conclusion-background::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -39,8 +39,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   opacity: 0.6;
@@ -91,7 +93,6 @@
   }
 }
 
-/* Content container */
 .conclusion-content {
   position: relative;
   z-index: 2;
@@ -127,7 +128,7 @@
 .conclusion-btn {
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
-  font-family: 'DM Serif Display', serif;
+  font-family: "DM Serif Display", serif;
   font-size: 1.75rem;
   font-weight: 400;
   border-radius: 20px;
@@ -147,15 +148,19 @@
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* Tech-inspired button glow effect */
 .conclusion-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   transition: left 0.5s ease;
   pointer-events: none;
 }
@@ -172,7 +177,8 @@
   box-shadow: 0 12px 40px rgba(255, 255, 255, 0.4);
 }
 
-.btn-icon, .btn-svg {
+.btn-icon,
+.btn-svg {
   width: 32px;
   height: 32px;
   transition: all 0.3s ease;
@@ -188,9 +194,8 @@
   transform: scale(1.1);
 }
 
-/* Encrypt effect styling */
 .conclusion-btn .btn-text {
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   letter-spacing: 0.05em;
   transition: all 0.1s ease;
 }
@@ -204,7 +209,6 @@
   z-index: 2;
 }
 
-/* Remove focus outline after click while maintaining keyboard accessibility */
 .conclusion-btn:focus {
   outline: none;
 }
@@ -214,16 +218,15 @@
   outline-offset: 2px;
 }
 
-/* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .conclusion-section {
     padding: 80px 20px;
   }
-  
+
   .conclusion-header {
     font-size: 2.5rem;
   }
-  
+
   .conclusion-desc {
     font-size: 1.1rem;
   }
@@ -233,13 +236,13 @@
   .conclusion-header {
     font-size: 2rem;
   }
-  
+
   .conclusion-desc {
     font-size: 1rem;
   }
-  
+
   .conclusion-btn {
     font-size: 1.5rem;
     padding: 14px 32px;
   }
-} 
+}

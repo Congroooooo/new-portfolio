@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import './About.css';
-import profileImg from '../assets/profile.png';
+import React, { useState, useEffect } from "react";
+import "./About.css";
+import profileImg from "../assets/profile.png";
 
-// Grid constants for water drop effect
 const GRID_WIDTH = 40;
 const GRID_HEIGHT = 30;
 
 const services = [
-  'Frontend Development', 
-  'UI/UX Design', 
-  'Web Design', 
-  'Mobile Design', 
-  'Responsiveness'
+  "Frontend Development",
+  "UI/UX Design",
+  "Web Design",
+  "Mobile Design",
+  "Responsiveness",
 ];
 
 const SpinningText = () => {
@@ -19,14 +18,14 @@ const SpinningText = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex(prev => prev + 1);
+      setIndex((prev) => prev + 1);
     }, 3000);
     return () => clearInterval(timer);
   }, []);
 
   const numServices = services.length;
   const angle = 360 / numServices;
-  const radius = (100 / 2) / Math.tan(Math.PI / numServices);
+  const radius = 100 / 2 / Math.tan(Math.PI / numServices);
 
   return (
     <div className="spinning-text-box-wrapper">
@@ -55,18 +54,14 @@ const DotGrid = () => {
 
   for (let i = 0; i < GRID_WIDTH; i++) {
     for (let j = 0; j < GRID_HEIGHT; j++) {
-      // Random animation delay between 0 and 4 seconds for staggered effect
       const randomDelay = Math.random() * 4;
-      
+
       dots.push(
-        <div
-          className="about-dot-container"
-          key={`${i}-${j}`}
-        >
+        <div className="about-dot-container" key={`${i}-${j}`}>
           <div
             className="about-dot-point"
             style={{
-              animationDelay: `${randomDelay}s`
+              animationDelay: `${randomDelay}s`,
             }}
           />
         </div>
@@ -77,9 +72,9 @@ const DotGrid = () => {
   return (
     <div
       className="about-dot-grid"
-      style={{ 
+      style={{
         gridTemplateColumns: `repeat(${GRID_WIDTH}, 1fr)`,
-        gridTemplateRows: `repeat(${GRID_HEIGHT}, 1fr)`
+        gridTemplateRows: `repeat(${GRID_HEIGHT}, 1fr)`,
       }}
     >
       {dots}
@@ -100,34 +95,71 @@ export default function About() {
       <div className="about-stats">
         <div className="stat-card">
           <div className="stat-top">3+</div>
-          <div className="stat-bottom">Years of<br/>Experience</div>
+          <div className="stat-bottom">
+            Years of
+            <br />
+            Experience
+          </div>
         </div>
         <div className="stat-card">
           <div className="stat-top">3+</div>
-          <div className="stat-bottom">Projects<br/>Completed</div>
+          <div className="stat-bottom">
+            Projects
+            <br />
+            Completed
+          </div>
         </div>
         <div className="stat-card stat-bold">
           <div className="stat-top">4th year</div>
-          <div className="stat-bottom">BSCS<br/>Student</div>
+          <div className="stat-bottom">
+            BSCS
+            <br />
+            Student
+          </div>
         </div>
         <div className="stat-card">
           <div className="stat-top">7+</div>
-          <div className="stat-bottom">Verified<br/>Certificates</div>
+          <div className="stat-bottom">
+            Verified
+            <br />
+            Certificates
+          </div>
         </div>
       </div>
       <div className="about-content-container">
-        <div className={`about-content${cardVisible ? ' about-content-visible' : ''}`}>
+        <div
+          className={`about-content${
+            cardVisible ? " about-content-visible" : ""
+          }`}
+        >
           <div className="about-title-group">
             <h3 className="about-name">Im Nicko Balmes</h3>
-            <div className="about-tagline"><span className="indented">"UI/UX That Works.</span> Front-End That Performs"</div>
+            <div className="about-tagline">
+              <span className="indented">"UI/UX That Works.</span> Front-End
+              That Performs"
+            </div>
           </div>
           <div className="about-image-container">
             <div className="about-img-accent"></div>
-            <img src={profileImg} alt="Nicko Balmes" className="about-img floating-img" />
+            <img
+              src={profileImg}
+              alt="Nicko Balmes"
+              className="about-img floating-img"
+            />
           </div>
           <div className="about-description-wrapper">
             <p className="about-description">
-              <span className="description-indent">I'm a 4th year Bachelor of Science in Computer Science student with a strong passion for Frontend Development and UI/UX Design. I specialize in creating clean, responsive, and user-friendly interfaces that not only look good but also offer seamless functionality across devices. My goal is to build websites that provide meaningful digital experiences by combining thoughtful design with practical development. As I continue to grow in this field, I aim to refine my skills and contribute to projects that prioritize usability and visual clarity.</span>
+              <span className="description-indent">
+                I'm a 4th year Bachelor of Science in Computer Science student
+                with a strong passion for Frontend Development and UI/UX Design.
+                I specialize in creating clean, responsive, and user-friendly
+                interfaces that not only look good but also offer seamless
+                functionality across devices. My goal is to build websites that
+                provide meaningful digital experiences by combining thoughtful
+                design with practical development. As I continue to grow in this
+                field, I aim to improve my skills and contribute to projects
+                that prioritize usability and visual clarity.
+              </span>
             </p>
           </div>
         </div>
@@ -138,4 +170,4 @@ export default function About() {
       </div>
     </section>
   );
-} 
+}

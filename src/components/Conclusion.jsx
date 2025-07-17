@@ -1,25 +1,31 @@
-import React, { useRef, useState, useEffect } from 'react';
-import './Conclusion.css';
+import React, { useRef, useState, useEffect } from "react";
+import "./Conclusion.css";
 
-// Encrypt button constants
 const TARGET_TEXT = "Hire Me";
 const CYCLES_PER_LETTER = 2;
 const SHUFFLE_TIME = 50;
 const CHARS = "!@#$%^&*():{};|,.<>/?";
 
-function EmailIcon({ className = '' }) {
+function EmailIcon({ className = "" }) {
   return (
-    <svg className={`btn-svg ${className}`} width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h20v16H2V4zm2 2v.01L12 13l8-6.99V6H4zm0 2.236V18h16V8.236l-8 6.99-8-6.99z"/></svg>
+    <svg
+      className={`btn-svg ${className}`}
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M2 4h20v16H2V4zm2 2v.01L12 13l8-6.99V6H4zm0 2.236V18h16V8.236l-8 6.99-8-6.99z" />
+    </svg>
   );
 }
 
 export default function Conclusion() {
-  // Encrypt button state
   const intervalRef = useRef(null);
   const [buttonText, setButtonText] = useState(TARGET_TEXT);
   const [activeTrails, setActiveTrails] = useState([]);
 
-  // Encrypt button functions
   const scramble = () => {
     let pos = 0;
 
@@ -51,7 +57,6 @@ export default function Conclusion() {
     setButtonText(TARGET_TEXT);
   };
 
-  // Effect to create random falling trails
   useEffect(() => {
     const createRandomTrail = () => {
       const gridSize = 50;
@@ -60,17 +65,19 @@ export default function Conclusion() {
       const randomGridLine = Math.floor(Math.random() * numberOfGridLines);
       const gridLinePosition = randomGridLine * gridSize;
       const leftPercentage = (gridLinePosition / viewportWidth) * 100;
-      
+
       const newTrail = {
         id: Date.now() + Math.random(),
         left: leftPercentage,
-        duration: 3.5 // Fixed normal speed for all trails
+        duration: 3.5,
       };
 
-      setActiveTrails(prev => [...prev, newTrail]);
+      setActiveTrails((prev) => [...prev, newTrail]);
 
       setTimeout(() => {
-        setActiveTrails(prev => prev.filter(trail => trail.id !== newTrail.id));
+        setActiveTrails((prev) =>
+          prev.filter((trail) => trail.id !== newTrail.id)
+        );
       }, newTrail.duration * 1000);
     };
 
@@ -82,18 +89,13 @@ export default function Conclusion() {
       }, randomDelay);
     };
 
-    // Start the random trail generation
     scheduleNextTrail();
-    
-    // Create initial trail immediately
-    createRandomTrail();
 
-    // Cleanup is handled by component unmount
+    createRandomTrail();
   }, []);
 
   return (
     <section className="conclusion-section">
-      {/* Animated background with grid and falling trails */}
       <div className="conclusion-background">
         <div className="conclusion-grid-pattern"></div>
         <div className="conclusion-falling-trails">
@@ -103,24 +105,23 @@ export default function Conclusion() {
               className="conclusion-light-trail"
               style={{
                 left: `${trail.left}%`,
-                animationDuration: `${trail.duration}s`
+                animationDuration: `${trail.duration}s`,
               }}
             ></div>
           ))}
         </div>
       </div>
 
-      {/* Content */}
       <div className="conclusion-content">
-        <h2 className="conclusion-header">
-          Let's Connect !
-        </h2>
+        <h2 className="conclusion-header">Let's Connect !</h2>
         <p className="conclusion-desc">
-          Thank you for visiting my portfolio! I appreciate your time and look forward to connecting with like-minded individuals. I'm excited to connect and collaborate.
+          Thank you for taking the time to explore my portfolio! I'm excited
+          about the opportunity to connect and collaborate, and I look forward
+          to what we can create together.
         </p>
         <div className="conclusion-btns">
           <button
-            onClick={() => window.open('mailto:nckoblms@gmail.com', '_blank')}
+            onClick={() => window.open("mailto:nckoblms@gmail.com", "_blank")}
             className="conclusion-btn"
             onMouseEnter={scramble}
             onMouseLeave={stopScramble}
@@ -133,4 +134,4 @@ export default function Conclusion() {
       </div>
     </section>
   );
-} 
+}

@@ -4,16 +4,17 @@
   min-height: 100vh;
 }
 
-/* Add subtle grid background */
 .projects-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   pointer-events: none;
@@ -28,7 +29,7 @@
 }
 
 .projects-header {
-  font-family: 'DM Serif Display', serif;
+  font-family: "DM Serif Display", serif;
   font-size: 3.5rem;
   font-weight: 400;
   color: #ffffff;
@@ -45,7 +46,7 @@
 
 .projects-container {
   position: relative;
-  height: 400vh; /* 4 times viewport height to allow scrolling */
+  height: 400vh;
 }
 
 .project-card {
@@ -90,9 +91,8 @@
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
 }
 
-/* Tech-inspired border glow effect */
 .project-card-inner::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -100,7 +100,12 @@
   bottom: 0;
   border-radius: 24px;
   padding: 2px;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: xor;
@@ -114,9 +119,8 @@
   opacity: 1;
 }
 
-/* Dark overlay for better text readability - hidden by default */
 .project-card-inner::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -155,10 +159,8 @@
   transform: translateY(0);
 }
 
-
-
 .project-title {
-  font-family: 'DM Serif Display', serif;
+  font-family: "DM Serif Display", serif;
   font-size: 3rem;
   color: #ffffff;
   margin: 0 0 24px 0;
@@ -206,7 +208,7 @@
 }
 
 .project-description {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.95);
@@ -254,7 +256,7 @@
   padding: 14px 28px;
   border-radius: 12px;
   text-decoration: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -265,13 +267,18 @@
 }
 
 .project-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
   pointer-events: none;
 }
@@ -297,7 +304,6 @@
   transform: scale(1.1);
 }
 
-/* Remove focus outline after click while maintaining keyboard accessibility */
 .project-btn:focus {
   outline: none;
 }
@@ -315,28 +321,27 @@
   display: none;
 }
 
-/* Responsive Design */
 @media screen and (max-width: 1024px) {
   .project-card-inner {
     height: 500px;
   }
-  
+
   .project-title {
     font-size: 2.5rem;
     max-width: 90%;
   }
-  
+
   .project-description {
     max-width: 85%;
     font-size: 1rem;
   }
-  
+
   .project-content {
     top: 30px;
     left: 30px;
     right: 30px;
   }
-  
+
   .project-buttons {
     bottom: 30px;
     left: 30px;
@@ -347,35 +352,35 @@
   .project-card {
     padding: 0 20px;
   }
-  
+
   .project-card-inner {
     height: 450px;
   }
-  
+
   .project-title {
     font-size: 2rem;
     max-width: 100%;
   }
-  
+
   .project-description {
     max-width: 100%;
     font-size: 0.95rem;
     padding: 16px;
   }
-  
+
   .project-content {
     top: 25px;
     left: 25px;
     right: 25px;
   }
-  
+
   .project-buttons {
     bottom: 25px;
     left: 25px;
     flex-direction: column;
     gap: 12px;
   }
-  
+
   .project-btn {
     padding: 12px 24px;
     font-size: 0.9rem;
@@ -384,42 +389,41 @@
   .project-card-inner:hover .project-buttons {
     opacity: 1;
     transform: translateY(0);
-    display: flex
-;
+    display: flex;
     flex-direction: row;
-}
+  }
 }
 
 @media screen and (max-width: 480px) {
   .project-card-inner {
     height: 400px;
   }
-  
+
   .project-content {
     top: 20px;
     left: 20px;
     right: 20px;
   }
-  
+
   .project-title {
     font-size: 1.6rem;
   }
-  
+
   .project-description {
     padding: 14px;
     font-size: 0.9rem;
   }
-  
+
   .project-buttons {
     bottom: 20px;
     left: 20px;
   }
-  
+
   .project-btn {
     padding: 10px 20px;
     font-size: 0.85rem;
   }
-  
+
   .tech-icon {
     width: 35px;
     height: 35px;
@@ -430,5 +434,5 @@
     transform: translateY(0);
     display: flex;
     flex-direction: row;
-}
+  }
 }

@@ -5,16 +5,17 @@
   position: relative;
 }
 
-/* Add subtle grid background */
 .skills-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   pointer-events: none;
@@ -63,19 +64,24 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   letter-spacing: 0.05em;
 }
 
 /* Tech-inspired button glow effect */
 .filter-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   transition: left 0.5s ease;
   pointer-events: none;
 }
@@ -95,7 +101,8 @@
 }
 
 .filter-btn.active {
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 0 8px 32px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3),
+    0 8px 32px rgba(255, 255, 255, 0.3);
 }
 
 .filter-btn.active::before {
@@ -125,13 +132,17 @@
   height: 110px;
   overflow-y: hidden;
   color: #fff;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
   backdrop-filter: blur(10px);
 }
 
 /* Tech-inspired border glow effect */
 .skill-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -139,7 +150,12 @@
   bottom: 0;
   border-radius: 12px;
   padding: 1px;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
@@ -156,7 +172,11 @@
 .skill-card:hover {
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
   z-index: 2;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
   border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-4px);
 }
@@ -166,7 +186,7 @@
   height: 40px;
   object-fit: contain;
   flex-shrink: 0;
-  transition: transform 0.3s cubic-bezier(.4,2,.6,1);
+  transition: transform 0.3s cubic-bezier(0.4, 2, 0.6, 1);
   border-radius: 8px;
   padding: 2px;
 }
@@ -186,7 +206,9 @@
   height: 100%;
 }
 
-.skill-title, .skill-proficiency, .skill-description {
+.skill-title,
+.skill-proficiency,
+.skill-description {
   white-space: normal;
   overflow: visible;
   text-overflow: unset;
@@ -291,9 +313,13 @@
 
 .skill-meter-bar {
   height: 100%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
   border-radius: 6px;
-  transition: width 0.4s cubic-bezier(.4,2,.6,1);
+  transition: width 0.4s cubic-bezier(0.4, 2, 0.6, 1);
 }
 
 .skill-meter-label {
@@ -306,4 +332,3 @@
   font-weight: 700;
   letter-spacing: 0.5px;
 }
-

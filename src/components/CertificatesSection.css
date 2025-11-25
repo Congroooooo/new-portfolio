@@ -1,0 +1,239 @@
+.certificates-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 5rem 1rem;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.grid-background {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+}
+
+.grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.glow-effect-1 {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 24rem;
+  height: 24rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+.glow-effect-2 {
+  position: absolute;
+  bottom: 25%;
+  right: 25%;
+  width: 24rem;
+  height: 24rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+.certificates-container {
+  position: relative;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+}
+
+.section-title-accent {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.title-divider {
+  width: 8rem;
+  height: 0.25rem;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  margin: 0 auto 1rem;
+}
+
+.section-description {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.125rem;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.content-card {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.5s, box-shadow 0.5s;
+  height: 40rem;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.content-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.1);
+}
+
+.event-navigation {
+  position: absolute;
+  top: -0.05rem;
+  right: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  transform: translateY(-50%);
+}
+
+.nav-button {
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: all 0.2s;
+}
+
+.nav-button:hover {
+  color: rgba(255, 255, 255, 0.7);
+  transform: scale(1.1);
+}
+
+.nav-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.nav-counter {
+  color: white;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+/* Layout Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    height: 100%;
+  }
+}
+
+/* ...existing code... */
+
+/* Carousel Container */
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.navigation-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 3rem;
+}
+
+.dot-button {
+  height: 0.75rem;
+  border-radius: 9999px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dot-button-inactive {
+  width: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dot-button-inactive:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.dot-button-active {
+  width: 3rem;
+  background-color: white;
+  box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .content-card {
+    padding: 3rem;
+    height: 45rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .certificates-section {
+    padding: 3rem 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .event-navigation {
+    position: static;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+  }
+
+  .content-card {
+    height: auto;
+    min-height: 45rem;
+  }
+}

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./EventCarousel.css";
 
-// Fallback arrow components if lucide-react is not installed
 const ChevronLeft = ({ className }) => (
   <svg
     className={className}

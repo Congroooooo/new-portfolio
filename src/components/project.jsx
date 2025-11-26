@@ -4,7 +4,7 @@ import NailsByKheleyImg from "../assets/NailsByKheley.png";
 import PAMOImg from "../assets/PAMO.png";
 import STIGWACalculatorImg from "../assets/STI-GWA-CALCULATOR.png";
 import AlertifyImg from "../assets/Alertify.png";
-import WorkHiveImg from "../assets/WorkHive.png";
+import WorkHiveImg from "../assets/Workhive.png";
 import PrepTalkImg from "../assets/PrepTalk.png";
 import BayanimoImg from "../assets/bayanimo.png";
 

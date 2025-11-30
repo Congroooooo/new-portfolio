@@ -3,9 +3,12 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/skills";
 import Projects from "./components/project";
+import Events from "./components/Events";
 import CertificatesSection from "./components/CertificatesSection";
 import Conclusion from "./components/Conclusion";
 import Footer from "./components/Footer";
+import { competitionsData } from "./data/competitionsData";
+import { certificatesData } from "./data/certificatesData";
 
 function App() {
   return (
@@ -15,7 +18,8 @@ function App() {
       <About />
       <Skills />
       <Projects />
-      <CertificatesSection />
+      <Events eventsData={competitionsData} />
+      <CertificatesSection certificatesData={certificatesData} />
       <Conclusion />
       <Footer />
     </div>

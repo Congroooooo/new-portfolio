@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Navbar.css";
-import resumePDF from "../assets/BalmesResume.pdf";
+import resumePDF from "../assets/Balmes Resume.pdf";
 
 const TARGET_TEXT = "Download CV";
 const CYCLES_PER_LETTER = 2;
@@ -123,6 +123,7 @@ export default function Navbar() {
             "about",
             "skills",
             "projects",
+            "competitions",
             "certificates",
           ];
           const windowHeight = window.innerHeight;
@@ -181,6 +182,7 @@ export default function Navbar() {
           { name: "About", id: "about" },
           { name: "Skills", id: "skills" },
           { name: "Projects", id: "projects" },
+          { name: "Events", id: "competitions" },
           { name: "Certificates", id: "certificates" },
         ].map((item) => (
           <li key={item.name}>
@@ -234,6 +236,7 @@ export default function Navbar() {
             { name: "About", id: "about" },
             { name: "Skills", id: "skills" },
             { name: "Projects", id: "projects" },
+            { name: "Events", id: "competitions" },
             { name: "Certificates", id: "certificates" },
           ].map((item) => (
             <li key={item.name}>

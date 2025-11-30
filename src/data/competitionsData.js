@@ -1,5 +1,5 @@
 import openItNov from "../assets/HACKATHON_OPEN_IT_NOVEMBER/team.jpg";
-import symposiumImg from "../assets/Thesis/ThesisPamo.jpg";
+import symposiumImg from "../assets/THESIS/ThesisPamo.jpg";
 import ICTcodeCampImg from "../assets/ICT CODE CAMP/image2.jpg";
 import dlsuHackathonImg from "../assets/HACKATHON DLSU/dlsu_team.jpeg";
 import openItJuly from "../assets/HACKATHON OPEN_IT_JULY/team2.jpg";

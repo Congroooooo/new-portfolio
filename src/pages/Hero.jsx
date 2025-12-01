@@ -165,7 +165,7 @@ export default function Hero() {
 
       <div className="hero-content">
         <h1 className="hero-header">
-          Welcome, Im{" "}
+          Welcome, I'm{" "}
           <span className="typewriter">
             {text}
             <span className="type-cursor">|</span>

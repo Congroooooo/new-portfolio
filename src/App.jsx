@@ -1,12 +1,12 @@
-import Navbar from "./components/navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/skills";
-import Projects from "./components/project";
-import Events from "./components/Events";
-import CertificatesSection from "./components/CertificatesSection";
-import Conclusion from "./components/Conclusion";
-import Footer from "./components/Footer";
+import Navbar from "./pages/navbar";
+import Hero from "./pages/Hero";
+import About from "./pages/About";
+import Skills from "./pages/skills";
+import Projects from "./pages/project";
+import Events from "./pages/Events";
+import CertificatesSection from "./pages/CertificatesSection";
+import Conclusion from "./pages/Conclusion";
+import Footer from "./pages/Footer";
 import { competitionsData } from "./data/competitionsData";
 import { certificatesData } from "./data/certificatesData";
 

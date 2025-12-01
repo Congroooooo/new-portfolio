@@ -27,41 +27,7 @@ function DownloadIcon() {
 }
 
 function LogoComponent() {
-  return (
-    <div className="logo-container">
-      <svg width="80" height="80" viewBox="0 0 200 200" className="logo-svg">
-        <defs>
-          <path id="top-curve" d="M 30 100 A 70 70 0 0 1 170 100" />
-          <path id="bottom-curve" d="M 170 100 A 70 70 0 0 1 30 100" />
-        </defs>
-
-        <circle
-          cx="100"
-          cy="100"
-          r="95"
-          fill="none"
-          stroke="rgba(255, 255, 255, 0.9)"
-          strokeWidth="3"
-        />
-
-        <text className="logo-text-top">
-          <textPath href="#top-curve" startOffset="50%" textAnchor="middle">
-            UI/UX DESIGNER
-          </textPath>
-        </text>
-
-        <text className="logo-text-bottom">
-          <textPath href="#bottom-curve" startOffset="50%" textAnchor="middle">
-            FRONTEND DEVELOPER
-          </textPath>
-        </text>
-
-        <text x="100" y="115" className="logo-initials" textAnchor="middle">
-          &lt;NB/&gt;
-        </text>
-      </svg>
-    </div>
-  );
+  return <div className="logo-text">&lt;nbDev/&gt;</div>;
 }
 
 export default function Navbar() {

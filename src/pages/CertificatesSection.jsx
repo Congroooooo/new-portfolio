@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CertificatesSection.css";
+import DotGrid from "../components/DotGrid";
 
 const CertificatesSection = ({ certificatesData }) => {
   const [selectedCert, setSelectedCert] = useState(null);
@@ -16,6 +17,7 @@ const CertificatesSection = ({ certificatesData }) => {
 
   return (
     <section id="certificates" className="certificates-section">
+      <DotGrid />
       <div className="certificates-container">
         <div className="certificates-header">
           <h1 className="certificates-title">Certificates</h1>

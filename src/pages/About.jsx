@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./About.css";
 import profileImg from "../assets/profile.png";
+import DotGrid from "../components/DotGrid";
 
 const GRID_WIDTH = 40;
 const GRID_HEIGHT = 30;
@@ -49,39 +50,6 @@ const SpinningText = () => {
   );
 };
 
-const DotGrid = () => {
-  const dots = [];
-
-  for (let i = 0; i < GRID_WIDTH; i++) {
-    for (let j = 0; j < GRID_HEIGHT; j++) {
-      const randomDelay = Math.random() * 4;
-
-      dots.push(
-        <div className="about-dot-container" key={`${i}-${j}`}>
-          <div
-            className="about-dot-point"
-            style={{
-              animationDelay: `${randomDelay}s`,
-            }}
-          />
-        </div>
-      );
-    }
-  }
-
-  return (
-    <div
-      className="about-dot-grid"
-      style={{
-        gridTemplateColumns: `repeat(${GRID_WIDTH}, 1fr)`,
-        gridTemplateRows: `repeat(${GRID_HEIGHT}, 1fr)`,
-      }}
-    >
-      {dots}
-    </div>
-  );
-};
-
 export default function About() {
   const [cardVisible, setCardVisible] = useState(false);
   useEffect(() => {
@@ -94,7 +62,7 @@ export default function About() {
       <div className="about-underline"></div>
       <div className="about-stats">
         <div className="stat-card">
-          <div className="stat-top">3+</div>
+          <div className="stat-top">1+</div>
           <div className="stat-bottom">
             Years of
             <br />

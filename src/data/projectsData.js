@@ -15,6 +15,10 @@ const techIcons = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
   PHP: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
   Vite: "https://vitejs.dev/logo.svg",
+  TAILWIND:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+  MongoDB:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
 };
 
 export const projectsData = [
@@ -38,10 +42,9 @@ export const projectsData = [
     description:
       "Alertify is an intelligent earthquake alert system designed to notify users the moment an earthquake occurs. It integrates directly with the USGS API to gather real-time seismic data and instantly sends SMS alerts to keep users informed and safe. The system also includes an AI-powered suggestion engine that provides immediate recommended actions based on the earthquake’s location and severity—helping users respond quickly and appropriately during emergencies.",
     tech: [
-      { name: "HTML", icon: techIcons.HTML },
-      { name: "CSS", icon: techIcons.CSS },
-      { name: "Javascript", icon: techIcons.Javascript },
-      { name: "PHP", icon: techIcons.PHP },
+      { name: "React", icon: techIcons.React },
+      { name: "Tailwind CSS", icon: techIcons.TAILWIND },
+      { name: "MongoDB", icon: techIcons.MongoDB },
     ],
     image: AlertifyImg,
     github: "https://github.com/yourusername/pamo",
@@ -52,10 +55,9 @@ export const projectsData = [
     description:
       "Work Hive is a job-tracking web app that helps users stay organized by listing all the jobs they've applied for in one place. It simplifies the application process, making it easier for users to manage, review, and track their job opportunities without confusion.",
     tech: [
-      { name: "HTML", icon: techIcons.HTML },
-      { name: "CSS", icon: techIcons.CSS },
-      { name: "Javascript", icon: techIcons.Javascript },
-      { name: "PHP", icon: techIcons.PHP },
+      { name: "React", icon: techIcons.React },
+      { name: "Tailwind CSS", icon: techIcons.TAILWIND },
+      { name: "MongoDB", icon: techIcons.MongoDB },
     ],
     image: WorkHiveImg,
     github: "https://github.com/yourusername/pamo",
@@ -66,10 +68,9 @@ export const projectsData = [
     description:
       "Bayanimo is a gamified project management web app designed to boost community participation by centralizing local initiatives from the barangay level up to the municipal level. It encourages citizens to stay involved, track progress, and collaborate through an engaging, game-inspired system.",
     tech: [
-      { name: "HTML", icon: techIcons.HTML },
-      { name: "CSS", icon: techIcons.CSS },
-      { name: "Javascript", icon: techIcons.Javascript },
-      { name: "PHP", icon: techIcons.PHP },
+      { name: "React", icon: techIcons.React },
+      { name: "Tailwind CSS", icon: techIcons.TAILWIND },
+      { name: "MongoDB", icon: techIcons.MongoDB },
     ],
     image: BayanimoImg,
     github: "https://github.com/yourusername/pamo",
@@ -80,10 +81,9 @@ export const projectsData = [
     description:
       "PreptalkAI is a full-stack web platform that helps freelancers and microentrepreneurs prepare for job interviews or business pitches. It features resume parsing, customizable mock interviews, and is built with scalability in mind. AI-driven feedback and persona simulation are currently under development.",
     tech: [
-      { name: "HTML", icon: techIcons.HTML },
-      { name: "CSS", icon: techIcons.CSS },
-      { name: "Javascript", icon: techIcons.Javascript },
-      { name: "PHP", icon: techIcons.PHP },
+      { name: "React", icon: techIcons.React },
+      { name: "Tailwind CSS", icon: techIcons.TAILWIND },
+      { name: "MongoDB", icon: techIcons.MongoDB },
     ],
     image: PrepTalkImg,
     demo: "https://preptalkai-ruddy.vercel.app/",
@@ -111,8 +111,7 @@ export const projectsData = [
       "The STI GWA Calculator is a web application that allows users to calculate their General Weighted Average (GWA) based on their grades and units. It provides a user-friendly interface for students to track their academic performance and plan their academic journey.",
     tech: [
       { name: "React", icon: techIcons.React },
-      { name: "Vite", icon: techIcons.Vite },
-      { name: "CSS", icon: techIcons.CSS },
+      { name: "Tailwind CSS", icon: techIcons.TAILWIND },
     ],
     image: STIGWACalculatorImg,
     demo: "https://sti-gwa-calculator-rho.vercel.app/",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./About.css";
-import profileImg from "../assets/profile.png";
+import profileImg from "../assets/nbdev.jpg";
 import DotGrid from "../components/DotGrid";
 
 const GRID_WIDTH = 40;

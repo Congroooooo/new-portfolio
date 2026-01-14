@@ -167,7 +167,8 @@ export default function Navbar() {
 
       <a
         href={resumePDF}
-        download="BalmesResume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
         className="download-btn desktop-download"
         onMouseEnter={scramble}
         onMouseLeave={stopScramble}
@@ -221,7 +222,8 @@ export default function Navbar() {
 
         <a
           href={resumePDF}
-          download="BalmesResume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
           className="mobile-download-btn"
           onClick={() => setMobileMenuOpen(false)}
         >

@@ -1,0 +1,416 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
+@theme {
+  --color-primary-bg: #0a0a0a;
+  --color-secondary-bg: #1a1a1a;
+  --color-card-bg: #111111;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #cccccc;
+  --color-text-muted: rgba(255, 255, 255, 0.9);
+  --color-accent: #ffffff;
+  --color-accent-glow: rgba(255, 255, 255, 0.3);
+  --color-grid-color: rgba(255, 255, 255, 0.03);
+  --color-border-color: rgba(255, 255, 255, 0.1);
+  --color-border-hover: rgba(255, 255, 255, 0.3);
+  --color-glass-bg: rgba(255, 255, 255, 0.1);
+  --color-glass-bg-hover: rgba(255, 255, 255, 0.15);
+  --color-glass-border: rgba(255, 255, 255, 0.2);
+
+  /* Custom Fonts */
+  --font-family-playfair: 'Playfair Display', serif;
+  --font-family-lato: 'Lato', sans-serif;
+  --font-family-poppins: 'Poppins', sans-serif;
+  --font-family-dm-serif: 'DM Serif Display', serif;
+
+  /* Custom Shadows */
+  --shadow-light: 0 4px 16px rgba(255, 255, 255, 0.1);
+  --shadow-medium: 0 8px 32px rgba(255, 255, 255, 0.1);
+  --shadow-heavy: 0 12px 48px rgba(255, 255, 255, 0.15);
+  --shadow-text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --shadow-pulse-glow: 0 0 20px rgba(34, 197, 94, 0.3);
+
+  /* Custom Animations */
+  --animate-fade-in-up: fadeInUp 0.6s ease-out;
+  --animate-fade-in: fadeIn 0.6s ease-out;
+  --animate-slide-in-left: slideInLeft 0.6s ease-out;
+  --animate-slide-in-right: slideInRight 0.6s ease-out;
+  --animate-pulse-glow: pulseGlow 3s ease-in-out infinite;
+}
+
+/* ============================================
+   CSS VARIABLES (For backward compatibility)
+   These allow existing component CSS files to work
+   during migration process
+   ============================================ */
+:root {
+  /* Background colors */
+  --primary-bg: #0a0a0a;
+  --secondary-bg: #1a1a1a;
+  --card-bg: #111111;
+
+  /* Text colors */
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: rgba(255, 255, 255, 0.9);
+
+  /* Accent colors */
+  --accent-color: #ffffff;
+  --accent-rgb: 255, 255, 255;
+  --accent-color-glow: rgba(255, 255, 255, 0.3);
+
+  /* Grid and borders */
+  --grid-color: rgba(255, 255, 255, 0.03);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color-hover: rgba(255, 255, 255, 0.3);
+
+  /* Glass morphism */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-bg-hover: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+
+  /* Shadows */
+  --shadow-light: 0 4px 16px rgba(255, 255, 255, 0.1);
+  --shadow-medium: 0 8px 32px rgba(255, 255, 255, 0.1);
+  --shadow-heavy: 0 12px 48px rgba(255, 255, 255, 0.15);
+  --shadow-text: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Font utility classes (for backward compatibility) */
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-lato {
+  font-family: 'Lato', sans-serif;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-dm-serif {
+  font-family: 'DM Serif Display', serif;
+}
+
+/* ============================================
+   BASE LAYER CUSTOMIZATIONS
+   Global styles using standard CSS (avoiding @apply in v4)
+   ============================================ */
+@layer base {
+  /* HTML & Body setup */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* For fixed navbar offset */
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Headings - Custom font family */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Code blocks */
+  code {
+    font-family:
+      source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  }
+
+  /* Box sizing for all elements */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+/* ============================================
+   UTILITIES LAYER
+   Custom utility classes using standard CSS
+   ============================================ */
+@layer utilities {
+  /* Glass morphism effect - Reusable utility */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Glass effect with hover */
+  .glass-effect-hover {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .glass-effect-hover:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* ============================================
+   GLOBAL STYLES (Outside layers)
+   Styles that don't fit in Tailwind layers
+   ============================================ */
+
+/* Selection styling */
+::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Focus states - Remove default outlines, but keep accessibility */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* Visible focus for keyboard navigation (accessibility!) */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+button,
+a,
+input,
+select,
+textarea {
+  transition: all 0.3s ease;
+}
+
+/* ============================================
+   ANIMATIONS (For backward compatibility)
+   Keyframes and utility classes from original CSS
+   ============================================ */
+
+/* Keyframes definitions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh + 100px));
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes accent-rotate {
+  0% {
+    transform: translateY(-50%) translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) translateX(0) rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Animation utility classes */
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-fall {
+  animation: fall linear 1;
+  animation-fill-mode: forwards;
+}
+
+.animate-cursor-blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+.animate-floating {
+  animation: floating 3.5s ease-in-out infinite;
+}
+
+.animate-accent-rotate {
+  animation: accent-rotate 12s linear infinite;
+}

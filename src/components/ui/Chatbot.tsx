@@ -24,7 +24,7 @@ export const Chatbot: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   // Auto-scroll to bottom when new messages arrive
   const scrollToBottom = () => {
@@ -110,12 +110,21 @@ export const Chatbot: React.FC = () => {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
   };
+
+  // Auto-resize textarea based on content
+  useEffect(() => {
+    const textarea = inputRef.current;
+    if (textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = `${Math.min(textarea.scrollHeight, 120)}px`;
+    }
+  }, [inputValue]);
 
   return (
     <>
@@ -239,15 +248,15 @@ export const Chatbot: React.FC = () => {
                 <p className="text-xs text-red-400">{error}</p>
               </div>
             )}
-            <div className="flex gap-2">
-              <input
+            <div className="flex items-end gap-2">
+              <textarea
                 ref={inputRef}
-                type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
                 placeholder="Ask about Nicko..."
                 disabled={isLoading}
+                rows={1}
                 className={cn(
                   'flex-1 rounded-xl px-3 py-2 text-sm',
                   'border border-white/10 bg-[#0a0a0a]',
@@ -255,7 +264,12 @@ export const Chatbot: React.FC = () => {
                   'focus:border-white/30 focus:ring-2 focus:ring-white/20 focus:outline-none',
                   'disabled:cursor-not-allowed disabled:opacity-50',
                   'transition-all duration-200',
-                  'overflow-hidden text-ellipsis'
+                  'max-h-[120px] resize-none overflow-y-auto',
+                  'break-words whitespace-pre-wrap',
+                  '[&::-webkit-scrollbar]:w-1.5',
+                  '[&::-webkit-scrollbar-thumb]:rounded-full',
+                  '[&::-webkit-scrollbar-thumb]:bg-white/10',
+                  '[&::-webkit-scrollbar-track]:bg-transparent'
                 )}
               />
               <button

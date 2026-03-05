@@ -78,5 +78,14 @@ export default defineConfig({
 
     // Enable CORS if needed
     cors: true,
+
+    // Proxy API requests to backend server
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });

@@ -7,6 +7,7 @@ import { Events } from '@/features/events';
 import { Certificates } from '@/features/certificates';
 import { Conclusion } from '@/features/conclusion';
 import { Footer } from '@/components/layout';
+import { Chatbot } from '@/components/ui';
 import { competitionsData } from '@/data/competitionsData';
 import { certificatesData } from '@/data/certificatesData';
 
@@ -28,6 +29,7 @@ function App() {
       <Certificates certificatesData={certificatesData} />
       <Conclusion />
       <Footer />
+      <Chatbot />
     </div>
   );
 }

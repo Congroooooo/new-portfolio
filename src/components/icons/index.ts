@@ -10,3 +10,4 @@ export {
 export { EmailIcon, ArrowIcon } from './HeroIcons';
 export { EyeIcon, GithubProjectIcon } from './ProjectIcons';
 export { CloseIcon } from './CloseIcon';
+export { MessageCircleIcon, SendIcon, XIcon, BotIcon } from './ChatIcons';

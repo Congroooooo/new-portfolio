@@ -7,4 +7,4 @@
 // export { Badge } from './Badge/Badge';
 // export { Modal } from './Modal/Modal';
 
-export {};
+export { Chatbot } from './Chatbot';

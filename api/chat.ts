@@ -5,38 +5,6 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 // GEMINI API CONFIGURATION
 // ============================================
 
-let genAI: GoogleGenerativeAI | null = null;
-
-function getGeminiClient() {
-  if (!genAI) {
-    const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-
-    // Debug logging for production
-    console.log('🔍 Environment check:', {
-      hasKey: !!GEMINI_API_KEY,
-      keyPrefix: GEMINI_API_KEY
-        ? GEMINI_API_KEY.substring(0, 10) + '...'
-        : 'MISSING',
-      nodeEnv: process.env.NODE_ENV,
-      allEnvKeys: Object.keys(process.env).filter((k) => k.includes('GEMINI')),
-    });
-
-    if (!GEMINI_API_KEY) {
-      throw new Error('GEMINI_API_KEY is not set in environment variables');
-    }
-
-    if (GEMINI_API_KEY === 'your_gemini_api_key_here') {
-      throw new Error(
-        'Please replace the placeholder API key with your actual Gemini API key'
-      );
-    }
-
-    genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-    console.log('✅ Gemini client initialized successfully');
-  }
-  return genAI;
-}
-
 const SYSTEM_CONTEXT = `
 You are the official AI assistant for Nicko Balmes' portfolio website.
 
@@ -102,129 +70,52 @@ Work Hive - Job Tracking Web App
 - Built interactive dashboard for tracking job applications.
 - Implemented reminders and notification system.
 
-Bayanimo - Gamified Project Management App
-- Designed collaboration-focused UI.
-- Implemented gamification rewards & progress tracking.
-
-PrepTalk AI - AI-Powered Interview Preparation Platform
-- Built responsive UI using React + Tailwind.
-- Designed persona-based interview simulations.
-- Focused on clean UX and AI interaction flow.
-
-NailsByKheley - Booking & Business Website
-- Developed responsive booking interface.
-- Improved client online engagement.
-- Applied consistent branding and usability improvements.
-
-STI GWA Calculator
-- Built simple and effective academic calculator using React.
+Nails By Kheley - Full-Stack E-commerce Platform
+- Built admin inventory dashboard, customer ordering system.
+- Designed responsive UI/UX in Figma from scratch.
+- Integrated secure online payment gateway.
+- Delivered complete digital presence for local business.
 
 ====================================================
-ACHIEVEMENTS & COMPETITIONS
+HACKATHON PARTICIPATION & AWARDS
 ====================================================
 
-- Champion - OpeniT Hackathon (Nov 2025)
-- 2nd Place - FEU Create & Conquer Hackathon
-- Finalist (Top 8) - FEU Create & Conquer
-- Best in Working Prototype - FEU Hackathon
-- Best in Database Management System - NailsByKheley Project
-- Participant - DLSU Hacker Cup 2025
-- Participant - Inventi Hackathon
+- 🏆 1st Place - DLSU Open_IT Hackathon (Nov 2024)
+- 🥈 2nd Place - DLSU Open_IT Hackathon (July 2024)
+- 🎖️  Top 5 Finalist - FEU TechFest Webathon (Aug 2024)
+- 🎖️  Top 3 Finalist - PLM Tech Symposium Hackathon (Nov 2024)
 
 ====================================================
-CONVERSATION GUIDELINES
+CERTIFICATIONS
 ====================================================
 
-1. Only answer questions related to Nicko Balmes, his skills, projects, education, or experience.
-2. If asked unrelated topics, politely redirect to portfolio-related discussion.
-3. Be professional, confident, and concise.
-4. When explaining skills, provide examples from his projects.
-5. When asked why someone should hire him, highlight:
-   - Leadership in PAMO project
-   - Hackathon achievements
-   - Strong React + UI/UX background
-6. When listing items, use simple line breaks instead of bullet points or asterisks.
-7. Do not fabricate information.
-8. If unsure about something not listed above, say:
-   "That information is not available in Nicko's portfolio."
-9. If asked about salary expectations or salary range:
-- Do NOT provide a specific number or range.
-- Respond professionally and positively.
-- Politely express openness to discussion.
-- Encourage them to reach out via email for a detailed conversation.
-- Keep the tone confident, flexible, and negotiation-friendly.
+- ICT Code Camp Certificate (Jan 2024) - Dev Connect Communities
+- Best In Thesis Award (Oct 2023) - Computer Science
+- SQL Essential Certificate (Feb 2023) - LinkedIn Learning
+- Certificate of Achievement (Oct 2020) - HTML, CSS Specialization
 
-Always maintain a professional tone suitable for recruiters.
-Format responses in plain text without markdown symbols like * or ** for better readability in chat.
+====================================================
+RESPONSE GUIDELINES
+====================================================
+
+1. Keep responses professional yet conversational.
+2. For technical questions, be specific (mention React, TypeScript, Tailwind, Figma, etc.).
+3. When asked about experience, cite real projects (PAMO, Alertify, Nails By Kheley, Work Hive).
+4. Highlight problem-solving and collaboration skills.
+5. For design questions, emphasize UI/UX skills and Figma expertise.
+6. If asked about availability, say Nicko is open to internships, junior roles, and freelance projects.
+7. For contact, direct them to the portfolio's contact section or social links.
+8. NEVER make up information not listed here.
+9. If you don't know something, acknowledge it and suggest reaching out directly.
+
+Be helpful, accurate, and always represent Nicko in the best professional light.
 `;
-
-// ============================================
-// RATE LIMITING (Simple in-memory)
-// ============================================
-
-interface RateLimitEntry {
-  count: number;
-  resetTime: number;
-}
-
-const rateLimitMap = new Map<string, RateLimitEntry>();
-const RATE_LIMIT_WINDOW = 60000; // 1 minute
-const MAX_REQUESTS_PER_WINDOW = 10;
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-
-  if (!entry || now > entry.resetTime) {
-    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
-    return true;
-  }
-
-  if (entry.count >= MAX_REQUESTS_PER_WINDOW) {
-    return false;
-  }
-
-  entry.count++;
-  return true;
-}
-
-// ============================================
-// TEXT FORMATTING HELPER
-// ============================================
-
-function cleanMarkdownForChat(text: string): string {
-  return text
-    .replace(/\*\*\*/g, '')
-    .replace(/\*\*/g, '')
-    .replace(/\*/g, '')
-    .replace(/__/g, '')
-    .replace(/_/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
 
 // ============================================
 // SERVERLESS FUNCTION HANDLER
 // ============================================
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET,OPTIONS,PATCH,DELETE,POST,PUT'
-  );
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
-
-  // Handle OPTIONS request for CORS preflight
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({
@@ -234,97 +125,101 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    // Rate limiting
-    const clientIp =
-      (req.headers['x-forwarded-for'] as string)?.split(',')[0] ||
-      req.headers['x-real-ip'] ||
-      'unknown';
-    if (!checkRateLimit(clientIp as string)) {
-      return res.status(429).json({
-        error: 'Too many requests',
-        message: 'Please wait a moment before sending another message',
-      });
-    }
+    // Validate API key
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-    // Validate request body
-    const { message, conversationHistory } = req.body;
-
-    if (!message || typeof message !== 'string') {
-      return res.status(400).json({
-        error: 'Invalid request',
-        message: 'Message is required and must be a string',
-      });
-    }
-
-    if (message.length > 1000) {
-      return res.status(400).json({
-        error: 'Invalid request',
-        message: 'Message is too long (max 1000 characters)',
-      });
-    }
-
-    // Get Gemini client
-    const client = getGeminiClient();
-    const model = client.getGenerativeModel({
-      model: 'gemini-2.0-flash-exp',
-    });
-
-    // Build conversation history with system context
-    let prompt = SYSTEM_CONTEXT + '\n\n';
-
-    if (Array.isArray(conversationHistory) && conversationHistory.length > 0) {
-      conversationHistory.forEach((msg: any) => {
-        if (msg.role === 'user') {
-          prompt += `User: ${msg.content}\n`;
-        } else if (msg.role === 'assistant') {
-          prompt += `Assistant: ${msg.content}\n`;
-        }
-      });
-    }
-
-    prompt += `User: ${message}\nAssistant:`;
-
-    // Call Gemini API
-    const result = await model.generateContent(prompt);
-    const response = result.response;
-    const aiMessage = response.text();
-
-    // Clean markdown formatting
-    const cleanedMessage = cleanMarkdownForChat(aiMessage);
-
-    // Return response
-    return res.status(200).json({
-      message: cleanedMessage,
-      timestamp: new Date().toISOString(),
-    });
-  } catch (error: any) {
-    console.error('Error:', error.message);
-
-    // Handle specific error cases
-    if (
-      error.message?.includes('API key') ||
-      error.message?.includes('API_KEY')
-    ) {
+    if (!GEMINI_API_KEY) {
+      console.error('❌ GEMINI_API_KEY not found in environment variables');
       return res.status(500).json({
         error: 'Configuration error',
         message: 'AI service is not properly configured',
       });
     }
 
-    if (
-      error.message?.includes('quota') ||
-      error.message?.includes('RESOURCE_EXHAUSTED')
-    ) {
-      return res.status(503).json({
-        error: 'Service unavailable',
-        message: 'AI service quota exceeded. Please try again later.',
+    if (GEMINI_API_KEY === 'your_gemini_api_key_here') {
+      return res.status(500).json({
+        error: 'Configuration error',
+        message: 'Please configure your Gemini API key',
+      });
+    }
+
+    // Parse request body
+    const { message, conversationHistory = [] } = req.body;
+
+    if (!message || typeof message !== 'string' || !message.trim()) {
+      return res.status(400).json({
+        error: 'Validation error',
+        message: 'Message is required and must be a non-empty string',
+      });
+    }
+
+    // Initialize Gemini AI
+    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+
+    // Build chat history with system context
+    const chatHistory = [
+      {
+        role: 'user',
+        parts: [{ text: SYSTEM_CONTEXT }],
+      },
+      {
+        role: 'model',
+        parts: [
+          {
+            text: "Understood! I'm Nicko Balmes' AI assistant. I'll professionally represent his skills, experience, and projects to help visitors learn more about him. How can I help you today?",
+          },
+        ],
+      },
+      ...conversationHistory.map((msg: { role: string; content: string }) => ({
+        role: msg.role === 'user' ? 'user' : 'model',
+        parts: [{ text: msg.content }],
+      })),
+    ];
+
+    // Start chat session
+    const chat = model.startChat({
+      history: chatHistory,
+      generationConfig: {
+        maxOutputTokens: 500,
+        temperature: 0.7,
+      },
+    });
+
+    // Send message and get response
+    const result = await chat.sendMessage(message.trim());
+    const aiResponse = result.response.text();
+
+    // Return success response
+    return res.status(200).json({
+      message: aiResponse,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error: any) {
+    console.error('❌ Chat API Error:', error);
+
+    // Handle specific error types
+    if (error.message?.includes('API key')) {
+      return res.status(500).json({
+        error: 'Configuration error',
+        message: 'AI service is not properly configured',
+        details: error.message,
+      });
+    }
+
+    if (error.message?.includes('quota') || error.message?.includes('limit')) {
+      return res.status(429).json({
+        error: 'Rate limit exceeded',
+        message: 'Too many requests. Please try again later.',
       });
     }
 
     // Generic error response
     return res.status(500).json({
-      error: 'AI service error',
-      message: 'Failed to process your message. Please try again.',
+      error: 'Internal server error',
+      message: 'Failed to process your request. Please try again.',
+      details:
+        process.env.NODE_ENV === 'development' ? error.message : undefined,
     });
   }
 }

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "vercel-build": "vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css}\"",
@@ -38,7 +39,6 @@
     "@types/node": "^25.3.3",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "@vercel/node": "^3.2.29",
     "@vitejs/plugin-react": "^4.4.1",
     "autoprefixer": "^10.4.21",
     "concurrently": "^9.2.1",
@@ -54,6 +54,7 @@
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1",
+    "vercel": "^50.27.1",
     "vite": "^6.4.1"
   }
 }

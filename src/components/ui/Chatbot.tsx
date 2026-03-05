@@ -7,15 +7,17 @@ import {
   BotIcon,
 } from '@/components/icons';
 import type { ChatMessage, ChatApiResponse, ChatApiError } from '@/types';
+import NixAILogo from '@/assets/NixAILogo.png';
 
 export const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
       role: 'assistant',
       content:
-        "👋 Hi! I'm Nicko's AI assistant. Ask me anything about his skills, projects, or experience!",
+        "Hi 👋, I'm Nix, Nicko's AI assistant. How can I help you explore his work?",
       timestamp: new Date(),
     },
   ]);
@@ -128,9 +130,43 @@ export const Chatbot: React.FC = () => {
 
   return (
     <>
+      {/* Welcome Message */}
+      {showWelcome && !isOpen && (
+        <div
+          className={cn(
+            'fixed right-4 bottom-20 z-40',
+            'max-w-[280px] rounded-2xl',
+            'bg-[#111111]/95 backdrop-blur-xl',
+            'border border-white/20',
+            'shadow-[0_0_40px_rgba(255,255,255,0.2)]',
+            'p-4',
+            'animate-in slide-in-from-bottom-4 fade-in duration-500'
+          )}
+        >
+          <div className="flex items-start gap-3">
+            <div className="flex-1">
+              <p className="text-sm leading-relaxed text-white">
+                Hi 👋, I'm <span className="font-semibold">Nix</span>, Nicko's
+                AI assistant. How can I help you explore his work?
+              </p>
+            </div>
+            <button
+              onClick={() => setShowWelcome(false)}
+              className="flex-shrink-0 rounded-lg p-1 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+              aria-label="Dismiss welcome message"
+            >
+              <XIcon className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Floating Chat Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          setIsOpen(!isOpen);
+          setShowWelcome(false);
+        }}
         className={cn(
           'fixed right-4 bottom-4 z-50',
           'h-12 w-12 rounded-full',
@@ -141,6 +177,7 @@ export const Chatbot: React.FC = () => {
           'hover:scale-110 active:scale-95',
           'flex items-center justify-center',
           'backdrop-blur-sm',
+          'overflow-hidden',
           isOpen && 'rotate-90'
         )}
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
@@ -148,7 +185,11 @@ export const Chatbot: React.FC = () => {
         {isOpen ? (
           <XIcon className="h-6 w-6" />
         ) : (
-          <MessageCircleIcon className="h-6 w-6" />
+          <img
+            src={NixAILogo}
+            alt="Nix AI"
+            className="h-11 w-11 object-cover"
+          />
         )}
       </button>
 
@@ -168,13 +209,15 @@ export const Chatbot: React.FC = () => {
           {/* Header */}
           <div className="flex items-center justify-between border-b border-white/10 bg-[#111111] px-4 py-3">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10">
-                <BotIcon className="h-4 w-4 text-white" />
+              <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full">
+                <img
+                  src={NixAILogo}
+                  alt="Nix AI"
+                  className="h-8 w-8 object-cover"
+                />
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-white">
-                  Portfolio Assistant
-                </h3>
+                <h3 className="text-sm font-semibold text-white">Nix</h3>
               </div>
             </div>
             <button

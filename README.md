@@ -178,44 +178,31 @@ FRONTEND_URL=http://localhost:5173
 
 ## 🚀 Deployment
 
-### ✨ Deploy to Vercel (Recommended - One-Click Deploy)
-
-This project is **fully configured for Vercel** with serverless functions!
-
-**Quick Deploy:**
-1. Push to GitHub
-2. Import to Vercel
-3. Add `GEMINI_API_KEY` in environment variables
-4. Deploy!
-
-📚 **See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete step-by-step instructions**
-
 ### Build for Production
 
 ```bash
 # Build frontend
 npm run build
 
-# Build backend (for traditional server deployment)
+# Build backend
 npm run build:server
 ```
 
-### Other Deployment Options
+### Deployment Options
 
-1. **Vercel (Recommended)**
-   - ✅ Serverless functions ready (`api/` folder)
-   - ✅ Auto-deployment from GitHub
-   - ✅ Built-in HTTPS and CDN
-
-2. **Vercel/Netlify (Frontend) + Railway/Render (Backend)**
+1. **Vercel/Netlify (Frontend) + Railway/Render (Backend)**
    - Deploy frontend to Vercel/Netlify
    - Deploy backend to Railway/Render
    - Update CORS settings with production URLs
 
-3. **Single Server Deployment**
+2. **Single Server Deployment**
    - Build both frontend and backend
    - Serve frontend static files with Express
    - Run backend on same server
+
+3. **Serverless Functions**
+   - Convert backend routes to serverless functions
+   - Deploy to Vercel/Netlify with functions
 
 ## 🔒 Security
 

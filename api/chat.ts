@@ -11,6 +11,16 @@ function getGeminiClient() {
   if (!genAI) {
     const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
+    // Debug logging for production
+    console.log('🔍 Environment check:', {
+      hasKey: !!GEMINI_API_KEY,
+      keyPrefix: GEMINI_API_KEY
+        ? GEMINI_API_KEY.substring(0, 10) + '...'
+        : 'MISSING',
+      nodeEnv: process.env.NODE_ENV,
+      allEnvKeys: Object.keys(process.env).filter((k) => k.includes('GEMINI')),
+    });
+
     if (!GEMINI_API_KEY) {
       throw new Error('GEMINI_API_KEY is not set in environment variables');
     }
@@ -22,6 +32,7 @@ function getGeminiClient() {
     }
 
     genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+    console.log('✅ Gemini client initialized successfully');
   }
   return genAI;
 }
@@ -182,26 +193,21 @@ function checkRateLimit(ip: string): boolean {
 // ============================================
 
 function cleanMarkdownForChat(text: string): string {
-  return (
-    text
-      .replace(/\*\*\*/g, '')
-      .replace(/\*\*/g, '')
-      .replace(/\*/g, '')
-      .replace(/__/g, '')
-      .replace(/_/g, '')
-      .replace(/\s+/g, ' ')
-      .trim()
-  );
+  return text
+    .replace(/\*\*\*/g, '')
+    .replace(/\*\*/g, '')
+    .replace(/\*/g, '')
+    .replace(/__/g, '')
+    .replace(/_/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 // ============================================
 // SERVERLESS FUNCTION HANDLER
 // ============================================
 
-export default async function handler(
-  req: VercelRequest,
-  res: VercelResponse
-) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');

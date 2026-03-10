@@ -17,7 +17,7 @@ export const Chatbot: React.FC = () => {
       id: '1',
       role: 'assistant',
       content:
-        "Hi 👋, I'm Nix, Nicko's AI assistant. How can I help you explore his work?",
+        'Hi! 👋🏻 Feel free to ask me anything about my projects, skills, or background.',
       timestamp: new Date(),
     },
   ]);
@@ -28,7 +28,6 @@ export const Chatbot: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Auto-scroll to bottom when new messages arrive
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -37,7 +36,6 @@ export const Chatbot: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Focus input when chat opens
   useEffect(() => {
     if (isOpen) {
       inputRef.current?.focus();
@@ -146,8 +144,8 @@ export const Chatbot: React.FC = () => {
           <div className="flex items-start gap-3">
             <div className="flex-1">
               <p className="text-sm leading-relaxed text-white">
-                Hi 👋, I'm <span className="font-semibold">Nix</span>, Nicko's
-                AI assistant. How can I help you explore his work?
+                Hi! 👋🏻 Feel free to ask me anything about my projects, skills,
+                or background.
               </p>
             </div>
             <button
@@ -178,6 +176,7 @@ export const Chatbot: React.FC = () => {
           'flex items-center justify-center',
           'backdrop-blur-sm',
           'overflow-hidden',
+          'cursor-pointer',
           isOpen && 'rotate-90'
         )}
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
@@ -217,7 +216,9 @@ export const Chatbot: React.FC = () => {
                 />
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-white">Nix</h3>
+                <h3 className="text-sm font-semibold text-white">
+                  Nicko Balmes
+                </h3>
               </div>
             </div>
             <button

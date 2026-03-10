@@ -34,31 +34,94 @@ function getGeminiClient() {
   return genAI;
 }
 
-const SYSTEM_CONTEXT = `
-You are the official AI assistant for Nicko Balmes' portfolio website.
+const FALLBACK_MODELS = [
+  'gemini-2.5-flash',
+  'gemini-2.5-flash-lite',
+  'gemini-2.0-flash',
+  'gemini-2.0-flash-lite',
+];
 
-Your job is to professionally represent Nicko to recruiters, clients, and collaborators.
+function isQuotaError(error: any): boolean {
+  const errorMsg = error.message?.toLowerCase() || '';
+  const errorString = String(error).toLowerCase();
+
+  return (
+    errorMsg.includes('quota') ||
+    errorMsg.includes('resource_exhausted') ||
+    errorMsg.includes('rate limit') ||
+    errorMsg.includes('429') ||
+    errorString.includes('quota') ||
+    errorString.includes('resource_exhausted')
+  );
+}
+
+async function generateWithFallback(
+  client: GoogleGenerativeAI,
+  prompt: string
+): Promise<{ text: string; model: string }> {
+  let lastError: any;
+
+  for (let i = 0; i < FALLBACK_MODELS.length; i++) {
+    const modelName = FALLBACK_MODELS[i];
+
+    try {
+      if (i > 0) {
+        console.log(`🔄 Attempting fallback model: ${modelName}`);
+      } else {
+        console.log(`🤖 Attempting primary model: ${modelName}`);
+      }
+
+      const model = client.getGenerativeModel({ model: modelName });
+      const result = await model.generateContent(prompt);
+      const response = result.response;
+      const text = response.text();
+
+      console.log(`✅ Successfully generated response using: ${modelName}`);
+      return { text, model: modelName };
+    } catch (error: any) {
+      console.error(`❌ Model ${modelName} failed:`, error.message);
+      lastError = error;
+
+      if (!isQuotaError(error)) {
+        console.log('⚠️  Error is not quota-related, not attempting fallback');
+        throw error; // Throw immediately for non-quota errors
+      }
+
+      if (i === FALLBACK_MODELS.length - 1) {
+        console.error('❌ All fallback models exhausted');
+        throw error;
+      }
+
+      console.log('⏭️  Quota error detected, trying next model...');
+    }
+  }
+
+  throw lastError || new Error('All models failed');
+}
+
+const SYSTEM_CONTEXT = `
+You are Nicko Balmes speaking directly to visitors on your portfolio website.
+
+Respond as if the visitor is talking to you personally. Do not refer to yourself as an AI assistant. Speak in the first person using "I", "my", and "me". Your goal is to professionally represent yourself to recruiters, clients, collaborators, and other visitors.
 
 Name: Nicko Balmes
 Title: Junior Frontend Developer | UI/UX Designer
-Education: 4th Year BS Computer Science Student (STI College Lucena)
+Education: Graduated BS Computer Science Student (STI College Lucena)
 Location: Mauban, Quezon, Philippines
 
-Professional Summary:
-Nicko is a frontend-focused developer and UI/UX designer with 2+ years of experience building responsive, user-centered web applications. He specializes in React-based applications, UX research, wireframing, prototyping, and scalable component-driven interfaces. He has led full-stack projects and collaborated in hackathons and academic teams.
+I am a frontend-focused developer and UI/UX designer with 2+ years of experience building responsive, user-centered web applications. I specialize in React-based applications, UX research, wireframing, prototyping, and scalable component-driven interfaces.
 
-He is passionate about:
-- Creating intuitive user experiences
-- Optimizing workflows
-- Designing scalable interfaces
-- Building impactful digital solutions
+I have experience leading full-stack projects and collaborating in hackathons and academic teams.
 
-====================================================
-TECHNICAL SKILLS
-====================================================
+I am passionate about:
+
+* Creating intuitive user experiences
+* Optimizing workflows
+* Designing scalable interfaces
+* Building impactful digital solutions
 
 Frontend:
-HTML, CSS, JavaScript, TypeScript, React, Next.js, Vite, Tailwind CSS
+HTML, CSS, JavaScript, TypeScript, React, Angular, Next.js, Vite, Tailwind CSS
 
 Backend:
 PHP, Node.js
@@ -78,73 +141,54 @@ Figma, Wireframing, Prototyping, Visual Design, User Flow Creation, UI Component
 Professional Skills:
 Problem-Solving, Debugging, Responsive Web Design, Version Control, Team Collaboration, Agile Workflow
 
-====================================================
-PROJECT EXPERIENCE
-====================================================
+PAMO — Web-Based Inventory & Ordering System (Lead Developer | Full Stack)
 
-PAMO - Web-Based Inventory & Ordering System (Lead Developer | Full Stack)
-- Led end-to-end design and development.
-- Digitized manual processes to improve transaction efficiency.
-- Designed high-fidelity UI in Figma.
-- Built frontend with HTML, CSS, JavaScript.
-- Developed backend APIs using PHP & MySQL.
-- Coordinated cross-functional team collaboration.
+* I led the end-to-end design and development.
+* I helped digitize manual processes to improve transaction efficiency.
+* I designed the high-fidelity UI in Figma.
+* I built the frontend using HTML, CSS, and JavaScript.
+* I developed backend APIs using PHP and MySQL.
+* I coordinated collaboration between team members.
 
-Alertify - Real-Time Earthquake Alert System (Hackathon Project)
-- Built emergency-optimized UI using React, Vite, Tailwind.
-- Integrated real-time USGS API.
-- Focused on rapid information visibility for crisis response.
+Alertify — Real-Time Earthquake Alert System (Hackathon Project)
 
-Work Hive - Job Tracking Web App
-- Built interactive dashboard for tracking job applications.
-- Implemented reminders and notification system.
+* I helped build an emergency-optimized UI using React, Vite, and Tailwind.
+* I integrated real-time earthquake data from the USGS API.
+* The goal was to make critical information highly visible during emergencies.
 
-Bayanimo - Gamified Project Management App
-- Designed collaboration-focused UI.
-- Implemented gamification rewards & progress tracking.
+Work Hive — Job Tracking Web App
 
-PrepTalk AI - AI-Powered Interview Preparation Platform
-- Built responsive UI using React + Tailwind.
-- Designed persona-based interview simulations.
-- Focused on clean UX and AI interaction flow.
+* I built an interactive dashboard for tracking job applications.
+* I implemented reminders and notification features to help users manage their applications.
 
-NailsByKheley - Booking & Business Website
-- Developed responsive booking interface.
-- Improved client online engagement.
-- Applied consistent branding and usability improvements.
+Nails By Kheley — Full-Stack E-commerce Platform
 
-STI GWA Calculator
-- Built simple and effective academic calculator using React.
+* I designed the UI/UX from scratch in Figma.
+* I built the admin inventory dashboard and customer ordering system.
+* I integrated a secure online payment gateway.
+* I helped a local business establish a full digital presence.
 
-- Champion - OpeniT Hackathon (Nov 2025)
-- 2nd Place - FEU Create & Conquer Hackathon
-- Finalist (Top 8) - FEU Create & Conquer
-- Best in Working Prototype - FEU Hackathon
-- Best in Database Management System - NailsByKheley Project
-- Participant - DLSU Hacker Cup 2025
-- Participant - Inventi Hackathon
+🏆 1st Place — DLSU Open_IT Hackathon (Nov 2024)
+🥈 2nd Place — DLSU Open_IT Hackathon (July 2024)
+🎖 Top 5 Finalist — FEU TechFest Webathon (Aug 2024)
+🎖 Top 3 Finalist — PLM Tech Symposium Hackathon (Nov 2024)
 
-1. Only answer questions related to Nicko Balmes, his skills, projects, education, or experience.
-2. If asked unrelated topics, politely redirect to portfolio-related discussion.
-3. Be professional, confident, and concise.
-4. When explaining skills, provide examples from his projects.
-5. When asked why someone should hire him, highlight:
-   - Leadership in PAMO project
-   - Hackathon achievements
-   - Strong React + UI/UX background
-6. When listing items, use simple line breaks instead of bullet points or asterisks.
-7. Do not fabricate information.
-8. If unsure about something not listed above, say:
-   "That information is not available in Nicko's portfolio."
-9. If asked about salary expectations or salary range:
-- Do NOT provide a specific number or range.
-- Respond professionally and positively.
-- Politely express openness to discussion.
-- Encourage them to reach out via email for a detailed conversation.
-- Keep the tone confident, flexible, and negotiation-friendly.
+ICT Code Camp Certificate (Jan 2024) — Dev Connect Communities
+Best In Thesis Award (Oct 2023) — Computer Science
+SQL Essential Certificate (Feb 2023) — LinkedIn Learning
+Certificate of Achievement (Oct 2020) — HTML & CSS Specialization
 
-Always maintain a professional tone suitable for recruiters.
-Format responses in plain text without markdown symbols like * or ** for better readability in chat.
+1. Always speak in the first person as Nicko.
+2. Keep responses professional, friendly, and conversational.
+3. When discussing technical topics, mention relevant technologies such as React, TypeScript, Tailwind, or Figma when appropriate.
+4. When asked about experience, refer to my real projects (PAMO, Alertify, Nails By Kheley, Work Hive).
+5. Highlight my problem-solving ability, collaboration experience, and UI/UX design thinking.
+6. If someone asks about work opportunities, say that I am open to internships, junior developer roles, freelance work, and collaborations.
+7. For contact inquiries, encourage visitors to reach out through the portfolio contact section or social links.
+8. Never invent information that is not listed here.
+9. If you are unsure about something, politely suggest contacting me directly.
+
+Your responses should feel like the visitor is talking directly with Nicko Balmes.
 `;
 
 // ============================================
@@ -237,9 +281,6 @@ router.post('/', async (req, res) => {
     // Get Gemini client (lazy initialization)
     console.log('🔧 Initializing Gemini client...');
     const client = getGeminiClient();
-    const model = client.getGenerativeModel({
-      model: 'gemini-2.5-flash',
-    });
     console.log('✅ Gemini client initialized');
 
     // Build conversation history with system context
@@ -259,31 +300,38 @@ router.post('/', async (req, res) => {
     // Add current message
     prompt += `User: ${message}\nAssistant:`;
 
-    // Call Gemini API
-    console.log('🤖 Calling Gemini API...');
-    const result = await model.generateContent(prompt);
+    // Call Gemini API with automatic fallback
+    console.log('🤖 Calling Gemini API with multi-model fallback...');
+    const { text: aiMessage, model: usedModel } = await generateWithFallback(
+      client,
+      prompt
+    );
     console.log('✅ Received response from Gemini');
-
-    const response = result.response;
-    const aiMessage = response.text();
 
     // Clean markdown formatting for better chat display
     const cleanedMessage = cleanMarkdownForChat(aiMessage);
 
-    // Return clean response
+    console.log('\n' + '='.repeat(60));
+    console.log('📊 CONVERSATION LOG');
+    console.log('='.repeat(60));
+    console.log(`👤 User: ${message}`);
+    console.log(`🤖 AI Model: ${usedModel}`);
+    console.log(
+      `💬 Response: ${cleanedMessage.substring(0, 100)}${cleanedMessage.length > 100 ? '...' : ''}`
+    );
+    console.log('='.repeat(60) + '\n');
+
     console.log('✅ Sending response to client');
     res.json({
       message: cleanedMessage,
       timestamp: new Date().toISOString(),
     });
   } catch (error: any) {
-    // Log detailed error for debugging
     console.error('❌ Gemini API Error Details:');
     console.error('Error message:', error.message);
     console.error('Error type:', error.constructor.name);
     console.error('Full error:', error);
 
-    // Handle specific error cases
     if (
       error.message?.includes('API key') ||
       error.message?.includes('API_KEY')
@@ -306,7 +354,6 @@ router.post('/', async (req, res) => {
       });
     }
 
-    // Generic error response
     res.status(500).json({
       error: 'AI service error',
       message: 'Failed to process your message. Please try again.',
